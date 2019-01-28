@@ -36,7 +36,7 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnAtras = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtReferencia = new System.Windows.Forms.TextBox();
+            this.txtArticulo = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -58,7 +58,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 46);
+            this.label2.Location = new System.Drawing.Point(14, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 2;
@@ -67,7 +67,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 78);
+            this.label3.Location = new System.Drawing.Point(14, 78);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 4;
@@ -105,16 +105,16 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(14, 111);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 13);
+            this.label4.Size = new System.Drawing.Size(61, 13);
             this.label4.TabIndex = 8;
-            this.label4.Text = "REFERENCIA";
+            this.label4.Text = "ARTICULO";
             // 
-            // txtReferencia
+            // txtArticulo
             // 
-            this.txtReferencia.Location = new System.Drawing.Point(95, 108);
-            this.txtReferencia.Name = "txtReferencia";
-            this.txtReferencia.Size = new System.Drawing.Size(100, 20);
-            this.txtReferencia.TabIndex = 7;
+            this.txtArticulo.Location = new System.Drawing.Point(95, 108);
+            this.txtArticulo.Name = "txtArticulo";
+            this.txtArticulo.Size = new System.Drawing.Size(100, 20);
+            this.txtArticulo.TabIndex = 7;
             // 
             // FormExistente
             // 
@@ -122,7 +122,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(268, 190);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtReferencia);
+            this.Controls.Add(this.txtArticulo);
             this.Controls.Add(this.btnAtras);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.label3);
@@ -146,6 +146,6 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnAtras;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtReferencia;
+        private System.Windows.Forms.TextBox txtArticulo;
     }
 }

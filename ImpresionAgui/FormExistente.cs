@@ -51,9 +51,10 @@ namespace ImpresionAgui
             //Articulo
             string fecha = txtFecha.Text;
             string albaran = txtAlbaran.Text;
+            string articulo = txtArticulo.Text;
 
             var values = new Dictionary<string, string>
-            {{"Fecha", fecha}, {"Albaran", albaran}};
+            {{"Fecha", fecha}, {"Albaran", albaran}, {"Articulo", articulo}};
 
             var content = new FormUrlEncodedContent(values);
             var response = await httpClient.PostAsync("api/leer_basedatos.php", content);
