@@ -54,7 +54,6 @@ namespace ImpresionAgui
             }
         }
 
-
         private void imprimir()
         {
             // Configurar impresora
@@ -87,6 +86,8 @@ namespace ImpresionAgui
             }
         }
 
+        int caja;
+
         private String getCommandoImpresion()
         {
             // Inicio del comando
@@ -103,7 +104,6 @@ namespace ImpresionAgui
 
             Console.Write(comando);
 
-
             //Articulo y su barCode
             comando += comando += "<ESC>V20<ESC>H60";
             comando += "<ESC>B103120*" + articulo + "*";
@@ -119,6 +119,16 @@ namespace ImpresionAgui
 
             //Pedido
             comando += "<ESC>V160<ESC>H400<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + "PEDIDO " + pedido;
+
+            //Numero de cajas y caja actual
+            int numeroTotalCajas = Int32.Parse(numcajas);
+
+            comando += "<ESC>V20<ESC>H570<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + caja + "/" + numcajas;
+
+            if (caja != numeroTotalCajas)
+            {
+                caja++;
+            }
 
             //Control
             comando += "<ESC>V120<ESC>H570<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + "CONTROL ";
@@ -177,8 +187,8 @@ namespace ImpresionAgui
         public async void enviarDatos()
         {
             httpClient = new HttpClient();
-            //httpClient.BaseAddress = new Uri("https://agui.myruns.com");
-            httpClient.BaseAddress = new Uri("http://localhost:800");
+            httpClient.BaseAddress = new Uri("https://agui.myruns.com");
+            //httpClient.BaseAddress = new Uri("http://localhost:800");
 
             for (int i = 0; i < tablaDatos.RowCount - 1; i++)
             {
@@ -207,8 +217,9 @@ namespace ImpresionAgui
                 //dato.destino = tablaDatos.Rows[i].Cells["Destino"].Value.ToString();
                 //Console.WriteLine("Destino: " + dato.destino + " ");
 
-                int cajas = Int32.Parse(dato.ncajas);
-                for (int j = 0; j < cajas; j++)
+                int numTotalCajas = Int32.Parse(dato.ncajas);
+                caja = 1;
+                for (int j = 0; j < numTotalCajas; j++)
                 {
                     var values = new Dictionary<string, string>
                     {
