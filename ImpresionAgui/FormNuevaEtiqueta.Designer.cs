@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNuevaEtiqueta));
             this.tablaDatos = new System.Windows.Forms.DataGridView();
             this.Articulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,7 +39,6 @@
             this.Ncajas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_imprimir = new System.Windows.Forms.Button();
             this.btnExistente = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.tablaDatos)).BeginInit();
@@ -128,12 +126,6 @@
             this.btnExistente.UseVisualStyleBackColor = false;
             this.btnExistente.Click += new System.EventHandler(this.btnExistente_Click);
             // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::ImpresionAgui.Properties.Resources.LOGO_MYRUNS_VECTORIAL;
@@ -186,7 +178,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Albaran;
         private System.Windows.Forms.DataGridViewTextBoxColumn Control;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ncajas;
-        private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
     }

@@ -207,29 +207,32 @@ namespace ImpresionAgui
                 //dato.destino = tablaDatos.Rows[i].Cells["Destino"].Value.ToString();
                 //Console.WriteLine("Destino: " + dato.destino + " ");
 
-                var values = new Dictionary<string, string>
+                int cajas = Int32.Parse(dato.ncajas);
+                for (int j = 0; j < cajas; j++)
                 {
-                   { "Articulo",    dato.articulo},
-                   { "Cantidad",    dato.cantidad},
-                   { "Lote",        dato.lote},
-                   { "Pedido",      dato.pedido},
-                   { "Albaran",     dato.albaran},
-                   { "Control",     dato.control},
-                   { "NCajas",      dato.ncajas}
-                   //{ "Destino",     dato.destino},
-                };
+                    var values = new Dictionary<string, string>
+                    {
+                        { "Articulo",    dato.articulo},
+                        { "Cantidad",    dato.cantidad},
+                        { "Lote",        dato.lote},
+                        { "Pedido",      dato.pedido},
+                        { "Albaran",     dato.albaran},
+                        { "Control",     dato.control},
+                        { "NCajas",      dato.ncajas}
+                       //{ "Destino",     dato.destino},
+                    };
 
-                var content = new FormUrlEncodedContent(values);
+                    var content = new FormUrlEncodedContent(values);
 
-                var response = await httpClient.PostAsync("api/pruebas_post.php", content);
-                
-                //Haciendo echo en pruebas_post recibimos el epc que queremos.
-                var contents = await response.Content.ReadAsStringAsync();
+                    var response = await httpClient.PostAsync("api/pruebas_post.php", content);
 
-                EPC = contents;
+                    //Haciendo echo en pruebas_post recibimos el epc que queremos.
+                    var contents = await response.Content.ReadAsStringAsync();
 
-                Console.WriteLine(contents);
+                    EPC = contents;
 
+                    Console.WriteLine(contents);
+                }
             }
         }
 
