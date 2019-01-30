@@ -48,7 +48,7 @@ namespace ImpresionAgui
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormEleccion());
+            Application.Run(new FormNuevaEtiqueta());
 
             //Parser.Default.ParseArguments<Options>(args)
             //  .WithParsed<Options>(opts => main(opts))

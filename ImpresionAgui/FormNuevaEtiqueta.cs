@@ -92,17 +92,46 @@ namespace ImpresionAgui
             // Inicio del comando
             String comando = "<STX><ESC>A";
 
-            comando += tablaDatos.CurrentRow.Cells["Articulo"].Value.ToString();
-            comando += tablaDatos.CurrentRow.Cells["Cantidad"].Value.ToString();
-            comando += tablaDatos.CurrentRow.Cells["Lote"].Value.ToString();
-            comando += tablaDatos.CurrentRow.Cells["Pedido"].Value.ToString();
-            comando += tablaDatos.CurrentRow.Cells["Albaran"].Value.ToString();
-            comando += tablaDatos.CurrentRow.Cells["Control"].Value.ToString();
-            comando += tablaDatos.CurrentRow.Cells["Ncajas"].Value.ToString();
-            comando += tablaDatos.CurrentRow.Cells["Destino"].Value.ToString();
+            String articulo = tablaDatos.CurrentRow.Cells["Articulo"].Value.ToString();
+            String cantidad = tablaDatos.CurrentRow.Cells["Cantidad"].Value.ToString();
+            String lote = tablaDatos.CurrentRow.Cells["Lote"].Value.ToString();
+            String pedido = tablaDatos.CurrentRow.Cells["Pedido"].Value.ToString();
+            String albaran = tablaDatos.CurrentRow.Cells["Albaran"].Value.ToString();
+            String control = tablaDatos.CurrentRow.Cells["Control"].Value.ToString();
+            String numcajas = tablaDatos.CurrentRow.Cells["Ncajas"].Value.ToString();
+            String destino = tablaDatos.CurrentRow.Cells["Destino"].Value.ToString();
 
             Console.Write(comando);
-            //comando += tablaDats.CurrentRow.Cells["Articulo"].Value.ToString();
+
+
+            //Articulo y su barCode
+            comando += comando += "<ESC>V20<ESC>H60";
+            comando += "<ESC>B103120*" + articulo + "*";
+            comando += "<ESC>V120<ESC>H60<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + articulo;
+
+            //Cantidad y su barCode
+            comando += "<ESC>V180<ESC>H60<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + "CANT. " +  cantidad;
+            comando += comando += "<ESC>V170<ESC>H300";
+            comando += "<ESC>B103120*" + cantidad + "*";
+
+            //Albaran 
+            comando += "<ESC>V120<ESC>H400<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + "ALBARAN " + albaran;
+
+            //Pedido
+            comando += "<ESC>V160<ESC>H400<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + "PEDIDO " + pedido;
+
+            //Control
+            comando += "<ESC>V120<ESC>H570<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + "CONTROL ";
+            comando += "<ESC>V150<ESC>H570<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + control;
+
+            //Lote, numero y barcode (faltan el codigo y barcode, pero hay que darles la vuelta)
+            comando += "<ESC>V20<ESC>H640<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + "LOTE ";
+
+            //Graphic prueba
+            comando += "<ESC>V10<ESC>H10<ESC>PGh0AH<ESC>GH006006";
+            comando += Utils.ConvertGraphicToSBPL("C:\\Users\\Propietario\\Pictures\\agui.png");
+            //comando += Utils.ConvertGraphicToSBPL(open.FileName);
+
 
             // Definir el EPC a escribir
             //comando += "<ESC>IP0e:z,d:" + epc + ";";
@@ -148,7 +177,8 @@ namespace ImpresionAgui
         public async void enviarDatos()
         {
             httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://agui.myruns.com");
+            //httpClient.BaseAddress = new Uri("https://agui.myruns.com");
+            httpClient.BaseAddress = new Uri("http://localhost:800");
 
             for (int i = 0; i < tablaDatos.RowCount - 1; i++)
             {
@@ -174,8 +204,8 @@ namespace ImpresionAgui
                 dato.ncajas = tablaDatos.Rows[i].Cells["Ncajas"].Value.ToString();
                 Console.WriteLine("Ncajas: " + dato.ncajas + " ");
                 //Destino
-                dato.destino = tablaDatos.Rows[i].Cells["Destino"].Value.ToString();
-                Console.WriteLine("Destino: " + dato.destino + " ");
+                //dato.destino = tablaDatos.Rows[i].Cells["Destino"].Value.ToString();
+                //Console.WriteLine("Destino: " + dato.destino + " ");
 
                 var values = new Dictionary<string, string>
                 {
@@ -185,8 +215,8 @@ namespace ImpresionAgui
                    { "Pedido",      dato.pedido},
                    { "Albaran",     dato.albaran},
                    { "Control",     dato.control},
-                   { "NCajas",      dato.ncajas},
-                   { "Destino",     dato.destino},
+                   { "NCajas",      dato.ncajas}
+                   //{ "Destino",     dato.destino},
                 };
 
                 var content = new FormUrlEncodedContent(values);
@@ -219,10 +249,10 @@ namespace ImpresionAgui
             MessageBox.Show("Imprimiendo etiqueta...");
         }
 
-        private void btnAtras_Click(object sender, EventArgs e)
+        private void btnExistente_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form eleccion = new FormEleccion();
+            Form eleccion = new FormExistente();
             eleccion.ShowDialog();
         }
     }

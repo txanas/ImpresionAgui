@@ -46,7 +46,8 @@ namespace ImpresionAgui
         public async Task buscarenBD()
         {
             httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://agui.myruns.com");
+            //httpClient.BaseAddress = new Uri("https://agui.myruns.com");
+            httpClient.BaseAddress = new Uri("http://localhost:800");
 
             //Articulo
             string fecha = txtFecha.Text;
@@ -67,7 +68,7 @@ namespace ImpresionAgui
         private void btnAtras_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form eleccion = new FormEleccion();
+            Form eleccion = new FormNuevaEtiqueta();
             eleccion.ShowDialog();
         }
     }
