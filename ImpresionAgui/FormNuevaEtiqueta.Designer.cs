@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNuevaEtiqueta));
             this.tablaDatos = new System.Windows.Forms.DataGridView();
             this.Articulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,8 +41,10 @@
             this.btn_imprimir = new System.Windows.Forms.Button();
             this.btnExistente = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.tablaDatos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +60,7 @@
             this.Albaran,
             this.Control,
             this.Ncajas});
-            this.tablaDatos.Location = new System.Drawing.Point(12, 92);
+            this.tablaDatos.Location = new System.Drawing.Point(13, 78);
             this.tablaDatos.Name = "tablaDatos";
             this.tablaDatos.Size = new System.Drawing.Size(748, 319);
             this.tablaDatos.TabIndex = 0;
@@ -100,8 +103,7 @@
             // btn_imprimir
             // 
             this.btn_imprimir.BackColor = System.Drawing.SystemColors.Info;
-            this.btn_imprimir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_imprimir.Location = new System.Drawing.Point(656, 440);
+            this.btn_imprimir.Location = new System.Drawing.Point(657, 412);
             this.btn_imprimir.Name = "btn_imprimir";
             this.btn_imprimir.Size = new System.Drawing.Size(104, 47);
             this.btn_imprimir.TabIndex = 1;
@@ -112,8 +114,7 @@
             // btnExistente
             // 
             this.btnExistente.BackColor = System.Drawing.SystemColors.Info;
-            this.btnExistente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnExistente.Location = new System.Drawing.Point(12, 440);
+            this.btnExistente.Location = new System.Drawing.Point(12, 412);
             this.btnExistente.Name = "btnExistente";
             this.btnExistente.Size = new System.Drawing.Size(94, 47);
             this.btnExistente.TabIndex = 2;
@@ -127,9 +128,18 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::ImpresionAgui.Properties.Resources.LOGO_MYRUNS_VECTORIAL;
+            this.pictureBox2.Location = new System.Drawing.Point(633, 12);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(127, 49);
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
+            // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::ImpresionAgui.Properties.Resources.agui;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(13, 13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(117, 48);
@@ -141,7 +151,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(808, 552);
+            this.ClientSize = new System.Drawing.Size(777, 473);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnExistente);
             this.Controls.Add(this.btn_imprimir);
@@ -149,6 +160,7 @@
             this.Name = "FormNuevaEtiqueta";
             this.ShowIcon = false;
             ((System.ComponentModel.ISupportInitialize)(this.tablaDatos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -168,6 +180,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ncajas;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 
