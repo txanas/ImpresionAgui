@@ -24,7 +24,7 @@ namespace ImpresionAgui
         public string control { get; set; }
         [JsonProperty("ncajas")]
         public string ncajas { get; set; }
-        [JsonProperty("destino")]
-        public string destino{ get; set; }
+        //[JsonProperty("destino")]
+        //public string destino{ get; set; }
     }
 }

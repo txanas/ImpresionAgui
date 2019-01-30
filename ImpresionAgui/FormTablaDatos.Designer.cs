@@ -45,7 +45,7 @@
             this.dataGridDatosBD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridDatosBD.Location = new System.Drawing.Point(12, 69);
             this.dataGridDatosBD.Name = "dataGridDatosBD";
-            this.dataGridDatosBD.Size = new System.Drawing.Size(845, 170);
+            this.dataGridDatosBD.Size = new System.Drawing.Size(745, 170);
             this.dataGridDatosBD.TabIndex = 0;
             // 
             // btnAtras
@@ -68,7 +68,7 @@
             this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImprimir.Location = new System.Drawing.Point(773, 258);
+            this.btnImprimir.Location = new System.Drawing.Point(673, 258);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(84, 41);
             this.btnImprimir.TabIndex = 2;
@@ -88,7 +88,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::ImpresionAgui.Properties.Resources.LOGO_MYRUNS_VECTORIAL;
-            this.pictureBox2.Location = new System.Drawing.Point(740, 3);
+            this.pictureBox2.Location = new System.Drawing.Point(640, 3);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(117, 48);
             this.pictureBox2.TabIndex = 5;
@@ -99,7 +99,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(875, 315);
+            this.ClientSize = new System.Drawing.Size(769, 313);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnImprimir);
