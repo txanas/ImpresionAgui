@@ -60,7 +60,7 @@
             this.Albaran,
             this.Control,
             this.Ncajas});
-            this.tablaDatos.Location = new System.Drawing.Point(13, 78);
+            this.tablaDatos.Location = new System.Drawing.Point(13, 68);
             this.tablaDatos.Name = "tablaDatos";
             this.tablaDatos.Size = new System.Drawing.Size(748, 319);
             this.tablaDatos.TabIndex = 0;
@@ -103,9 +103,12 @@
             // btn_imprimir
             // 
             this.btn_imprimir.BackColor = System.Drawing.SystemColors.Info;
-            this.btn_imprimir.Location = new System.Drawing.Point(657, 412);
+            this.btn_imprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btn_imprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btn_imprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_imprimir.Location = new System.Drawing.Point(667, 403);
             this.btn_imprimir.Name = "btn_imprimir";
-            this.btn_imprimir.Size = new System.Drawing.Size(104, 47);
+            this.btn_imprimir.Size = new System.Drawing.Size(94, 47);
             this.btn_imprimir.TabIndex = 1;
             this.btn_imprimir.Text = "IMPRIMIR";
             this.btn_imprimir.UseVisualStyleBackColor = false;
@@ -114,7 +117,10 @@
             // btnExistente
             // 
             this.btnExistente.BackColor = System.Drawing.SystemColors.Info;
-            this.btnExistente.Location = new System.Drawing.Point(12, 412);
+            this.btnExistente.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnExistente.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnExistente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExistente.Location = new System.Drawing.Point(12, 403);
             this.btnExistente.Name = "btnExistente";
             this.btnExistente.Size = new System.Drawing.Size(94, 47);
             this.btnExistente.TabIndex = 2;
@@ -131,7 +137,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::ImpresionAgui.Properties.Resources.LOGO_MYRUNS_VECTORIAL;
-            this.pictureBox2.Location = new System.Drawing.Point(633, 12);
+            this.pictureBox2.Location = new System.Drawing.Point(634, 3);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(127, 49);
             this.pictureBox2.TabIndex = 4;
@@ -140,7 +146,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(13, 13);
+            this.pictureBox1.Location = new System.Drawing.Point(13, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(117, 48);
             this.pictureBox1.TabIndex = 3;
@@ -157,6 +163,8 @@
             this.Controls.Add(this.btnExistente);
             this.Controls.Add(this.btn_imprimir);
             this.Controls.Add(this.tablaDatos);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormNuevaEtiqueta";
             this.ShowIcon = false;
             ((System.ComponentModel.ISupportInitialize)(this.tablaDatos)).EndInit();
