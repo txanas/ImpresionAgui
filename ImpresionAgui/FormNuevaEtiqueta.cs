@@ -266,7 +266,7 @@ namespace ImpresionAgui
         private void btnExistente_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form eleccion = new FormExistente();
+            Form eleccion = new FormTablaDatos();
             eleccion.ShowDialog();
         }
     }

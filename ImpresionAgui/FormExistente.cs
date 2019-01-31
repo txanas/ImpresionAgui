@@ -28,9 +28,9 @@ namespace ImpresionAgui
 
             if(data != null)
             {
-                Form datos = new FormTablaDatos(data);
+               // Form datos = new FormTablaDatos(data);
                 this.Hide();
-                datos.ShowDialog();
+               // datos.ShowDialog();
             } else
             {
                 Form datos = new FormTablaDatos();

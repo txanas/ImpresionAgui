@@ -10,6 +10,8 @@ namespace ImpresionAgui
 {
     class Datos
     {
+        [JsonProperty("fecha")]
+        public string fecha { get; set; }
         [JsonProperty("articulo")]
         public string articulo { get; set; }
         [JsonProperty("cantidad")]

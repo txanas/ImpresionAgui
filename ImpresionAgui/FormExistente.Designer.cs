@@ -70,7 +70,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 15);
             this.label3.TabIndex = 4;
-            this.label3.Text = "ALBARAN";
+            this.label3.Text = "ALBARÁN";
             // 
             // txtAlbaran
             // 
