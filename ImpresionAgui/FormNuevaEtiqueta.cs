@@ -59,7 +59,7 @@ namespace ImpresionAgui
             // Configurar impresora
             Printer SATOPrinter = new Printer();
             SATOPrinter.Interface = Printer.InterfaceType.TCPIP;
-            //SATOPrinter.TCPIPAddress = opts.ip;
+            SATOPrinter.TCPIPAddress = "192.168.1.52";
             //SATOPrinter.TCPIPPort = opts.port.ToString();
 
             // Generar comando de impresión
@@ -100,7 +100,7 @@ namespace ImpresionAgui
             String albaran = tablaDatos.CurrentRow.Cells["Albaran"].Value.ToString();
             String control = tablaDatos.CurrentRow.Cells["Control"].Value.ToString();
             String numcajas = tablaDatos.CurrentRow.Cells["Ncajas"].Value.ToString();
-            String destino = tablaDatos.CurrentRow.Cells["Destino"].Value.ToString();
+            //String destino = tablaDatos.CurrentRow.Cells["Destino"].Value.ToString();
 
             Console.Write(comando);
 
@@ -258,7 +258,7 @@ namespace ImpresionAgui
             enviarDatos();
 
             //imprimir etiqueta con su epc
-            //imprimir();
+            imprimir();
 
             MessageBox.Show("Imprimiendo etiqueta...");
         }

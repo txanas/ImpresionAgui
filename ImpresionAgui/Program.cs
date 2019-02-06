@@ -11,10 +11,10 @@ namespace ImpresionAgui
     static class Program
     {
 
-         //class Options
-        //{
-        //    [Option("ip", Required = true, Default = null, HelpText = "Dirección IP de la impresora")]
-        //    public String ip { get; set; }
+         class Options
+        {
+            [Option("ip", Required = true, Default = null, HelpText = "Dirección IP de la impresora")]
+            public String ip { get; set; }
 
         //    [Option("puerto", Default = 9100, HelpText = "Puerto de red la impresora")]
         //    public int port { get; set; }
@@ -39,7 +39,7 @@ namespace ImpresionAgui
 
         //    [Option("cantidad", Default = 1, HelpText = "Cantidad de etiquetas a imprimir")]
         //    public int cantidad { get; set; }
-        //}
+        }
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
