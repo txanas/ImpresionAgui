@@ -193,19 +193,10 @@ namespace ImpresionAgui
             comando += comando += "<ESC>V190<ESC>H760";
             comando += "<ESC>B103040*" + lote + "*";
 
-            Bitmap bmp = new Bitmap(Properties.Resources.agui);
-
-            ResourceManager rm = Properties.Resources.ResourceManager;
-            Bitmap myImage = (Bitmap)rm.GetObject("agui.png");
-
-            var myIcon = Properties.Resources.agui;
-
             string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
-            string FileName = string.Format("{0}Resources\\agui.png", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
+            string FileName = string.Format("{0}Resources\\agui_negro.png", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
 
-            ////var path = Path.GetTempPath();
-            //String path = "";
-            //Properties.Resources.agui.Save(path);
+            String[] path = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceNames(); ;
 
             //Graphic prueba
             comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";

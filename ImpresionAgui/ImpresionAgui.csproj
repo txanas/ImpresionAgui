@@ -121,16 +121,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\myruns.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\agui.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\LOGO MYRUNS VECTORIAL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\agui_negro.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

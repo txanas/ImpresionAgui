@@ -73,6 +73,16 @@ namespace ImpresionAgui.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap agui_negro {
+            get {
+                object obj = ResourceManager.GetObject("agui_negro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LOGO_MYRUNS_VECTORIAL {
             get {
                 object obj = ResourceManager.GetObject("LOGO_MYRUNS_VECTORIAL", resourceCulture);
