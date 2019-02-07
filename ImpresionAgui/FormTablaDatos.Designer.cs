@@ -51,7 +51,7 @@
             this.dataGridDatosBD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridDatosBD.Location = new System.Drawing.Point(12, 104);
             this.dataGridDatosBD.Name = "dataGridDatosBD";
-            this.dataGridDatosBD.Size = new System.Drawing.Size(871, 416);
+            this.dataGridDatosBD.Size = new System.Drawing.Size(971, 416);
             this.dataGridDatosBD.TabIndex = 0;
             // 
             // btnAtras
@@ -74,7 +74,7 @@
             this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImprimir.Location = new System.Drawing.Point(799, 526);
+            this.btnImprimir.Location = new System.Drawing.Point(899, 526);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(84, 41);
             this.btnImprimir.TabIndex = 2;
@@ -159,7 +159,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(895, 594);
+            this.ClientSize = new System.Drawing.Size(1006, 603);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtArticulo);
             this.Controls.Add(this.label3);

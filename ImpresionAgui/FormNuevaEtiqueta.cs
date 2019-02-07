@@ -12,6 +12,7 @@ using SATOPrinterAPI;
 using System.Net;
 using System.Net.Http;
 using System.IO;
+using Newtonsoft.Json;
 
 
 namespace ImpresionAgui
@@ -60,7 +61,7 @@ namespace ImpresionAgui
             Printer SATOPrinter = new Printer();
             SATOPrinter.Interface = Printer.InterfaceType.TCPIP;
             SATOPrinter.TCPIPAddress = "192.168.1.52";
-            //SATOPrinter.TCPIPPort = opts.port.ToString();
+            SATOPrinter.TCPIPPort = "9100";
 
             // Generar comando de impresión
             //String PrintCommand = getCommandoImpresion(opts.cantidad, opts.epc, opts.linea1, opts.linea2, opts.linea3, opts.qr, opts.barCode);
@@ -104,77 +105,56 @@ namespace ImpresionAgui
 
             Console.Write(comando);
 
+            // Definir el EPC a escribir
+            comando += "<ESC>IP0e:z,d:" + EPC + ";";
+
             //Articulo y su barCode
-            comando += comando += "<ESC>V20<ESC>H60";
-            comando += "<ESC>B103120*" + articulo + "*";
-            comando += "<ESC>V120<ESC>H60<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + articulo;
+            comando += comando += "<ESC>V05<ESC>H20";
+            comando += "<ESC>B103100*" + articulo + "*";
+            comando += "<ESC>V120<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + articulo;
 
             //Cantidad y su barCode
-            comando += "<ESC>V180<ESC>H60<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + "CANT. " +  cantidad;
-            comando += comando += "<ESC>V170<ESC>H300";
-            comando += "<ESC>B103120*" + cantidad + "*";
+            comando += "<ESC>V170<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,025,025," + "CANT. " + cantidad;
+            comando += comando += "<ESC>V155<ESC>H250";
+            comando += "<ESC>B103040*" + cantidad + "*";
 
             //Albaran 
-            comando += "<ESC>V120<ESC>H400<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + "ALBARAN " + albaran;
+            comando += "<ESC>V115<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "ALBARAN " + albaran;
 
             //Pedido
-            comando += "<ESC>V160<ESC>H400<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + "PEDIDO " + pedido;
+            comando += "<ESC>V140<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "PEDIDO " + pedido;
 
             //Numero de cajas y caja actual
-            int numeroTotalCajas = Int32.Parse(numcajas);
+            //int numeroTotalCajas = Int32.Parse(numcajas);
 
-            comando += "<ESC>V20<ESC>H570<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + caja + "/" + numcajas;
+            //comando += "<ESC>V20<ESC>H500<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + caja + "/" + numcajas;
 
-            if (caja != numeroTotalCajas)
-            {
-                caja++;
-            }
+            //if (caja != numeroTotalCajas)
+            //{
+            //    caja++;
+            //}
 
             //Control
-            comando += "<ESC>V120<ESC>H570<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + "CONTROL ";
-            comando += "<ESC>V150<ESC>H570<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + control;
+            comando += "<ESC>V90<ESC>H540<ESC>P4<ESC>L0101<ESC>RDB00,025,025," + "CONTROL ";
+            comando += "<ESC>V120<ESC>H560<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + control;
 
             //Lote, numero y barcode (faltan el codigo y barcode, pero hay que darles la vuelta)
-            comando += "<ESC>V20<ESC>H640<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + "LOTE ";
+            comando += "<ESC>%1<ESC>V140<ESC>H690<ESC>P4<ESC>L0101<ESC>RDB00,030,030," + "LOTE ";
+            comando += "<ESC>%1<ESC>V140<ESC>H730<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + lote;
+            comando += comando += "<ESC>V190<ESC>H760";
+            comando += "<ESC>B103040*" + lote + "*";
+
+            Bitmap bmp = new Bitmap(ImpresionAgui.Properties.Resources.agui);
+
+
 
             //Graphic prueba
-            comando += "<ESC>V10<ESC>H10<ESC>PGh0AH<ESC>GH006006";
-            comando += Utils.ConvertGraphicToSBPL("C:\\Users\\Propietario\\Pictures\\agui.png");
+            comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";
+            //comando += Utils.ConvertGraphicToSBPL("ImpresionAgui/Resources/agui.png");
             //comando += Utils.ConvertGraphicToSBPL(open.FileName);
 
-
-            // Definir el EPC a escribir
-            //comando += "<ESC>IP0e:z,d:" + epc + ";";
-
-            // QR Code
-            //if (qr != null)
-            //{
-            //    comando += "<ESC>V20<ESC>H600";
-            //    comando += "<ESC>2D30,H,07,0,0";
-            //    //comando += "<ESC>DS1," + qr;
-            //}
-
-            //if (barCode != null)
-            //{
-            //    comando += "<ESC>V20<ESC>H300";
-            //    comando += "<ESC>B103120*1234AB*";
-            //}
-
-            // Texto a imprimir
-            //comando += "<ESC>V20<ESC>H50<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + linea1;
-
-            //if (linea2 != null)
-            //{
-            //    //comando += "<ESC>V80<ESC>H50<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + linea2;
-            //}
-
-            //if (linea3 != null)
-            ////{
-            //    comando += "<ESC>V130<ESC>H50<ESC>P4<ESC>L0101<ESC>RDB00,060,060," + linea3;
-            //}
-
             // Cantidad de etiquetas a imprimir
-            //comando += "<ESC>Q" + cantidad;
+            comando += "<ESC>Q" + numcajas;
 
             // Fin del comando
             comando += "<ESC>Z<ETX>";
@@ -242,14 +222,14 @@ namespace ImpresionAgui
 
                     EPC = contents;
 
-                    Console.WriteLine(contents);
+                    //Console.WriteLine(contents);
                 }
             }
         }
 
         public async void getEPC()
         {
-            HttpResponseMessage response = await httpClient.GetAsync("sdca/api/checkPermissions");
+            HttpResponseMessage response = await httpClient.GetAsync(" ");
         }
 
         private void btn_imprimir_Click(object sender, EventArgs e)

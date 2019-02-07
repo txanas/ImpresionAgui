@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using SATOPrinterAPI;
 using System.Resources;
+using System.IO;
 
 
 namespace ImpresionAgui
@@ -95,6 +96,7 @@ namespace ImpresionAgui
             //FormNuevaEtiqueta etiqueta = new FormNuevaEtiqueta();
             //etiqueta.imprimir();
             imprimir();
+            MessageBox.Show("Imprimiendo etiqueta...");
         }
 
         private void imprimir()
@@ -148,9 +150,12 @@ namespace ImpresionAgui
             String albaran = dataGridDatosBD.CurrentRow.Cells["Albaran"].Value.ToString();
             String control = dataGridDatosBD.CurrentRow.Cells["Control"].Value.ToString();
             String numcajas = dataGridDatosBD.CurrentRow.Cells["Ncajas"].Value.ToString();
+            String epc = dataGridDatosBD.CurrentRow.Cells["EPC"].Value.ToString();
             //String destino = tablaDatos.CurrentRow.Cells["Destino"].Value.ToString();
 
             Console.Write(comando);
+            // Definir el EPC a escribir
+            comando += "<ESC>IP0e:z,d:" + epc + ";";
 
             //Articulo y su barCode
             comando += comando += "<ESC>V05<ESC>H20";
@@ -188,11 +193,23 @@ namespace ImpresionAgui
             comando += comando += "<ESC>V190<ESC>H760";
             comando += "<ESC>B103040*" + lote + "*";
 
-            Bitmap bmp = new Bitmap(ImpresionAgui.Properties.Resources.agui);
+            Bitmap bmp = new Bitmap(Properties.Resources.agui);
+
+            ResourceManager rm = Properties.Resources.ResourceManager;
+            Bitmap myImage = (Bitmap)rm.GetObject("agui.png");
+
+            var myIcon = Properties.Resources.agui;
+
+            string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
+            string FileName = string.Format("{0}Resources\\agui.png", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
+
+            ////var path = Path.GetTempPath();
+            //String path = "";
+            //Properties.Resources.agui.Save(path);
 
             //Graphic prueba
             comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";
-            //comando += Utils.ConvertGraphicToSBPL("ImpresionAgui/Resources/agui.png");
+            comando += Utils.ConvertGraphicToSBPL(FileName);
             //comando += Utils.ConvertGraphicToSBPL(open.FileName);
 
             // Cantidad de etiquetas a imprimir
