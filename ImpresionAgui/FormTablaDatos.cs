@@ -214,19 +214,30 @@ namespace ImpresionAgui
             return comando;
         }
 
+        private void filtrar()
+        {
+            string fecha = $"fecha LIKE '{txtFecha.Text}%'";
+            string albaran = $"albaran LIKE '{txtAlbaran.Text}%'";
+            string articulo = $"articulo LIKE '{txtArticulo.Text}%'";
+            tabla.DefaultView.RowFilter = fecha + " AND " + albaran + " AND " + articulo;
+        }
+
         private void txtFecha_TextChanged(object sender, EventArgs e)
         {
-            tabla.DefaultView.RowFilter = $"fecha LIKE '{txtFecha.Text}%'";
+            filtrar();
+            //this.tabla.DefaultView.RowFilter = $"fecha LIKE '{txtFecha.Text}%'";
         }
 
         private void txtAlbaran_TextChanged(object sender, EventArgs e)
         {
-            tabla.DefaultView.RowFilter = $"albaran LIKE '{txtAlbaran.Text}%'";
+            filtrar();
+            //this.tabla.DefaultView.RowFilter = $"albaran LIKE '{txtAlbaran.Text}%'";
         }
 
         private void txtArticulo_TextChanged(object sender, EventArgs e)
         {
-            tabla.DefaultView.RowFilter = $"articulo LIKE '{txtArticulo.Text}%'";
+            filtrar();
+            //this.tabla.DefaultView.RowFilter = $"articulo LIKE '{txtArticulo.Text}%'";
         }
 
         public DataTable ToDataTable<T>(IList<T> data)
