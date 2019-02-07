@@ -86,6 +86,8 @@ namespace ImpresionAgui
             data = JsonConvert.DeserializeObject<List<Datos>>(contents);
             tabla = ToDataTable(data);
             dataGridDatosBD.DataSource = tabla;
+            DataGridViewColumn column = dataGridDatosBD.Columns[8];
+            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
@@ -95,7 +97,7 @@ namespace ImpresionAgui
             //llamar a la funcion imprimir del form nuevaetiqueta o crear un nuevo metodo
             //FormNuevaEtiqueta etiqueta = new FormNuevaEtiqueta();
             //etiqueta.imprimir();
-            imprimir();
+            //imprimir();
             MessageBox.Show("Imprimiendo etiqueta...");
         }
 

@@ -70,7 +70,6 @@ namespace ImpresionAgui
         }
 
         Datos dato = new Datos();
-        int caja;
 
         public async Task enviarDatos()
         {
@@ -81,43 +80,42 @@ namespace ImpresionAgui
             for (int i = 0; i < tablaDatos.RowCount - 1; i++)
             {
                 //Articulo
-                dato.articulo = tablaDatos.Rows[i].Cells["Articulo"].Value.ToString();
-                Console.WriteLine("Articulo: " + dato.articulo + " ");
+                dato.ARTICULO = tablaDatos.Rows[i].Cells["Articulo"].Value.ToString();
+                Console.WriteLine("Articulo: " + dato.ARTICULO + " ");
                 //Cantidad
-                dato.cantidad = tablaDatos.Rows[i].Cells["Cantidad"].Value.ToString();
-                Console.WriteLine("Cantidad: " + dato.cantidad + " ");
+                dato.CANTIDAD = tablaDatos.Rows[i].Cells["Cantidad"].Value.ToString();
+                Console.WriteLine("Cantidad: " + dato.CANTIDAD + " ");
                 //Lote
-                dato.lote = tablaDatos.Rows[i].Cells["Lote"].Value.ToString();
-                Console.WriteLine("Lote: " + dato.lote + " ");
+                dato.LOTE = tablaDatos.Rows[i].Cells["Lote"].Value.ToString();
+                Console.WriteLine("Lote: " + dato.LOTE + " ");
                 //Pedido
-                dato.pedido = tablaDatos.Rows[i].Cells["Pedido"].Value.ToString();
-                Console.WriteLine("Pedido: " + dato.pedido + " ");
+                dato.PEDIDO = tablaDatos.Rows[i].Cells["Pedido"].Value.ToString();
+                Console.WriteLine("Pedido: " + dato.PEDIDO + " ");
                 //Albaran
-                dato.albaran = tablaDatos.Rows[i].Cells["Albaran"].Value.ToString();
-                Console.WriteLine("Albaran: " + dato.albaran + " ");
+                dato.ALBARAN = tablaDatos.Rows[i].Cells["Albaran"].Value.ToString();
+                Console.WriteLine("Albaran: " + dato.ALBARAN + " ");
                 //Control
-                dato.control = tablaDatos.Rows[i].Cells["Control"].Value.ToString();
-                Console.WriteLine("Control: " + dato.control + " ");
+                dato.CONTROL = tablaDatos.Rows[i].Cells["Control"].Value.ToString();
+                Console.WriteLine("Control: " + dato.CONTROL + " ");
                 //Numero cajas
-                dato.ncajas = tablaDatos.Rows[i].Cells["Ncajas"].Value.ToString();
-                Console.WriteLine("Ncajas: " + dato.ncajas + " ");
+                dato.NCAJAS = tablaDatos.Rows[i].Cells["Ncajas"].Value.ToString();
+                Console.WriteLine("Ncajas: " + dato.NCAJAS + " ");
                 //Destino
                 //dato.destino = tablaDatos.Rows[i].Cells["Destino"].Value.ToString();
                 //Console.WriteLine("Destino: " + dato.destino + " ");
 
-                numTotalCajas = Int32.Parse(dato.ncajas);
-                caja = 1;
+                numTotalCajas = Int32.Parse(dato.NCAJAS);
                 for (int j = 0; j < numTotalCajas; j++)
                 {
                     var values = new Dictionary<string, string>
                     {
-                        { "Articulo",    dato.articulo},
-                        { "Cantidad",    dato.cantidad},
-                        { "Lote",        dato.lote},
-                        { "Pedido",      dato.pedido},
-                        { "Albaran",     dato.albaran},
-                        { "Control",     dato.control},
-                        { "NCajas",      dato.ncajas}
+                        { "Articulo",    dato.ARTICULO},
+                        { "Cantidad",    dato.CANTIDAD},
+                        { "Lote",        dato.LOTE},
+                        { "Pedido",      dato.PEDIDO},
+                        { "Albaran",     dato.ALBARAN},
+                        { "Control",     dato.CONTROL},
+                        { "NCajas",      dato.NCAJAS}
                        //{ "Destino",     dato.destino},
                     };
 

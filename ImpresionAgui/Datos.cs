@@ -10,24 +10,24 @@ namespace ImpresionAgui
 {
     class Datos
     {
-        [JsonProperty("fecha")]
-        public string fecha { get; set; }
-        [JsonProperty("articulo")]
-        public string articulo { get; set; }
-        [JsonProperty("cantidad")]
-        public string cantidad { get; set; }
-        [JsonProperty("lote")]
-        public string lote { get; set; }
-        [JsonProperty("pedido")]
-        public string pedido { get; set; }
-        [JsonProperty("albaran")]
-        public string albaran { get; set; }
-        [JsonProperty("control")]
-        public string control { get; set; }
-        [JsonProperty("ncajas")]
-        public string ncajas { get; set; }
+        [JsonProperty("FECHA")]
+        public string FECHA { get; set; }
+        [JsonProperty("ARTICULO")]
+        public string ARTICULO { get; set; }
+        [JsonProperty("CANTIDAD")]
+        public string CANTIDAD { get; set; }
+        [JsonProperty("LOTE")]
+        public string LOTE { get; set; }
+        [JsonProperty("PEDIDO")]
+        public string PEDIDO { get; set; }
+        [JsonProperty("ALBARAN")]
+        public string ALBARAN { get; set; }
+        [JsonProperty("CONTROL")]
+        public string CONTROL { get; set; }
+        [JsonProperty("NCAJAS")]
+        public string NCAJAS { get; set; }
         [JsonProperty("EPC")]
-        public string epc { get; set; }
+        public string EPC { get; set; }
         //[JsonProperty("destino")]
         //public string destino{ get; set; }
     }
