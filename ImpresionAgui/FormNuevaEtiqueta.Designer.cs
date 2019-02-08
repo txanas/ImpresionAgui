@@ -41,9 +41,15 @@
             this.btnExistente = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.tablaDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tablaDatos
@@ -58,9 +64,10 @@
             this.Albaran,
             this.Control,
             this.Ncajas});
-            this.tablaDatos.Location = new System.Drawing.Point(13, 68);
+            this.tablaDatos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tablaDatos.Location = new System.Drawing.Point(10, 0);
             this.tablaDatos.Name = "tablaDatos";
-            this.tablaDatos.Size = new System.Drawing.Size(748, 319);
+            this.tablaDatos.Size = new System.Drawing.Size(757, 374);
             this.tablaDatos.TabIndex = 0;
             // 
             // Articulo
@@ -101,12 +108,13 @@
             // btn_imprimir
             // 
             this.btn_imprimir.BackColor = System.Drawing.SystemColors.Info;
+            this.btn_imprimir.Dock = System.Windows.Forms.DockStyle.Right;
             this.btn_imprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btn_imprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btn_imprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_imprimir.Location = new System.Drawing.Point(667, 403);
+            this.btn_imprimir.Location = new System.Drawing.Point(673, 10);
             this.btn_imprimir.Name = "btn_imprimir";
-            this.btn_imprimir.Size = new System.Drawing.Size(94, 47);
+            this.btn_imprimir.Size = new System.Drawing.Size(94, 41);
             this.btn_imprimir.TabIndex = 1;
             this.btn_imprimir.Text = "IMPRIMIR";
             this.btn_imprimir.UseVisualStyleBackColor = false;
@@ -115,12 +123,13 @@
             // btnExistente
             // 
             this.btnExistente.BackColor = System.Drawing.SystemColors.Info;
+            this.btnExistente.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnExistente.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnExistente.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnExistente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExistente.Location = new System.Drawing.Point(12, 403);
+            this.btnExistente.Location = new System.Drawing.Point(10, 10);
             this.btnExistente.Name = "btnExistente";
-            this.btnExistente.Size = new System.Drawing.Size(94, 47);
+            this.btnExistente.Size = new System.Drawing.Size(94, 41);
             this.btnExistente.TabIndex = 2;
             this.btnExistente.Text = "EXISTENTE";
             this.btnExistente.UseVisualStyleBackColor = false;
@@ -128,33 +137,65 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox2.Image = global::ImpresionAgui.Properties.Resources.LOGO_MYRUNS_VECTORIAL;
-            this.pictureBox2.Location = new System.Drawing.Point(634, 3);
+            this.pictureBox2.Location = new System.Drawing.Point(640, 0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(127, 49);
+            this.pictureBox2.Size = new System.Drawing.Size(127, 56);
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(13, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(10, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(117, 48);
+            this.pictureBox1.Size = new System.Drawing.Size(117, 56);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btn_imprimir);
+            this.panel1.Controls.Add(this.btnExistente);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 430);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(10);
+            this.panel1.Size = new System.Drawing.Size(777, 61);
+            this.panel1.TabIndex = 5;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.panel2.Size = new System.Drawing.Size(777, 56);
+            this.panel2.TabIndex = 6;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.tablaDatos);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 56);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.panel3.Size = new System.Drawing.Size(777, 374);
+            this.panel3.TabIndex = 7;
             // 
             // FormNuevaEtiqueta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(777, 473);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.btnExistente);
-            this.Controls.Add(this.btn_imprimir);
-            this.Controls.Add(this.tablaDatos);
+            this.ClientSize = new System.Drawing.Size(777, 491);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormNuevaEtiqueta";
@@ -163,6 +204,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tablaDatos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -181,6 +225,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ncajas;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
     }
 }
 
