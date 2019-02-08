@@ -160,7 +160,7 @@ namespace ImpresionAgui
                 // Enviar comando a la impresora
                 try
                 {
-                    SATOPrinter.Send(cmddata);
+                    //SATOPrinter.Send(cmddata);
                 }
                 catch (Exception exception)
                 {
@@ -203,10 +203,10 @@ namespace ImpresionAgui
             comando += "<ESC>B103040*" + cantidad + "*";
 
             //Albaran 
-            comando += "<ESC>V115<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "ALBARAN " + albaran;
+            comando += "<ESC>V110<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "ALBARAN " + albaran;
 
             //Pedido
-            comando += "<ESC>V140<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "PEDIDO " + pedido;
+            comando += "<ESC>V135<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "PEDIDO " + pedido;
 
             //Numero de cajas y caja actual
             int numeroTotalCajas = Int32.Parse(numcajas);
@@ -229,13 +229,11 @@ namespace ImpresionAgui
             comando += "<ESC>B103040*" + lote + "*";
 
             string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
-            string FileName = string.Format("{0}Resources\\agui.png", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
-
-
+            string FileName = string.Format("{0}Resources\\agui_negro.png", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
 
             //Graphic prueba
             comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";
-            //comando += Utils.ConvertGraphicToSBPL(FileName);
+            comando += Utils.ConvertGraphicToSBPL(FileName);
             //comando += Utils.ConvertGraphicToSBPL(open.FileName);
 
             // Cantidad de etiquetas a imprimir

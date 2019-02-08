@@ -97,7 +97,7 @@ namespace ImpresionAgui
             //llamar a la funcion imprimir del form nuevaetiqueta o crear un nuevo metodo
             //FormNuevaEtiqueta etiqueta = new FormNuevaEtiqueta();
             //etiqueta.imprimir();
-            //imprimir();
+            imprimir();
             MessageBox.Show("Imprimiendo etiqueta...");
         }
 
@@ -124,7 +124,7 @@ namespace ImpresionAgui
             // Enviar comando a la impresora
             try
             {
-                SATOPrinter.Send(cmddata);
+                //SATOPrinter.Send(cmddata);
             }
             catch (Exception exception)
             {
@@ -160,7 +160,7 @@ namespace ImpresionAgui
             comando += "<ESC>IP0e:z,d:" + epc + ";";
 
             //Articulo y su barCode
-            comando += comando += "<ESC>V05<ESC>H20";
+            comando += comando += "<ESC>V00<ESC>H20";
             comando += "<ESC>B103100*" + articulo + "*";
             comando += "<ESC>V120<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + articulo;
 
@@ -170,10 +170,10 @@ namespace ImpresionAgui
             comando += "<ESC>B103040*" + cantidad + "*";
 
             //Albaran 
-            comando += "<ESC>V115<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "ALBARAN " + albaran;
+            comando += "<ESC>V110<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "ALBARAN " + albaran;
 
             //Pedido
-            comando += "<ESC>V140<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "PEDIDO " + pedido;
+            comando += "<ESC>V135<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "PEDIDO " + pedido;
 
             //Numero de cajas y caja actual
             //int numeroTotalCajas = Int32.Parse(numcajas);
@@ -197,11 +197,12 @@ namespace ImpresionAgui
 
             string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
             string FileName = string.Format("{0}Resources\\agui_negro.png", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
-
-            String[] path = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceNames(); ;
+            //string ruta = FileName.Replace(@"\", "\");
+           // FileName = FileName.Replace("\\\\", "\\");    
+           // FileName = FileName.Replace("/", @"\");
 
             //Graphic prueba
-            comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";
+            comando += "<ESC>V00<ESC>H540<ESC>PGh0AH<ESC>GH006006";
             comando += Utils.ConvertGraphicToSBPL(FileName);
             //comando += Utils.ConvertGraphicToSBPL(open.FileName);
 
