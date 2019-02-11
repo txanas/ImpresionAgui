@@ -21,7 +21,7 @@ namespace ImpresionAgui
         private String datosBD;
         private List<Datos> data;
         DataTable tabla;
-        // private String data;
+        public PairData pairData;
 
         private static readonly int ERROR_CODE_PARAMS = -1;
         private static readonly int ERROR_CODE_EPC_NOT_HEX = -2;
@@ -31,6 +31,7 @@ namespace ImpresionAgui
         public FormTablaDatos()
         {
             InitializeComponent();
+            pairData = ConfigurationManager.getInstance().getPairData();
             buscarenBD();
         }
 
@@ -106,8 +107,8 @@ namespace ImpresionAgui
             // Configurar impresora
             Printer SATOPrinter = new Printer();
             SATOPrinter.Interface = Printer.InterfaceType.TCPIP;
-            SATOPrinter.TCPIPAddress = "192.168.1.200";
-            SATOPrinter.TCPIPPort = "9100";
+            SATOPrinter.TCPIPAddress = pairData.IP;
+            SATOPrinter.TCPIPPort = pairData.Port;
 
             // Generar comando de impresión
             //String PrintCommand = getCommandoImpresion(opts.cantidad, opts.epc, opts.linea1, opts.linea2, opts.linea3, opts.qr, opts.barCode);

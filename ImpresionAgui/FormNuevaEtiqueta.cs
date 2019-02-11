@@ -13,28 +13,29 @@ using System.Net;
 using System.Net.Http;
 using System.IO;
 using Newtonsoft.Json;
-
+using System.Collections.Specialized;
+using System.Configuration;
 
 namespace ImpresionAgui
 {
     public partial class FormNuevaEtiqueta : Form
     {
-        public FormNuevaEtiqueta()
-        {
-            InitializeComponent();
-        }
-
-        private static readonly int ERROR_CODE_PARAMS = -1;
-        private static readonly int ERROR_CODE_EPC_NOT_HEX = -2;
-        private static readonly int ERROR_CODE_EPC_NOT_24_CHARS = -3;
         private static readonly int ERROR_CODE_ERROR_DESCONOCIDO = -4;
 
+        public PairData pairData;
+        
         private HttpClient httpClient;
 
         private String EPC;
         string[] ListaEPC = new string[20];
         int numTotalCajas;
 
+
+        public FormNuevaEtiqueta()
+        {
+            InitializeComponent();
+            pairData = ConfigurationManager.getInstance().getPairData();
+        }
 
         private static void salirConError(String mensaje, int errorCode)
         {
@@ -140,8 +141,8 @@ namespace ImpresionAgui
             // Configurar impresora
             Printer SATOPrinter = new Printer();
             SATOPrinter.Interface = Printer.InterfaceType.TCPIP;
-            SATOPrinter.TCPIPAddress = "192.168.1.200";
-            SATOPrinter.TCPIPPort = "9100";
+            SATOPrinter.TCPIPAddress = pairData.IP;
+            SATOPrinter.TCPIPPort = pairData.Port;
 
             // Generar comando de impresión
             //String PrintCommand = getCommandoImpresion(opts.cantidad, opts.epc, opts.linea1, opts.linea2, opts.linea3, opts.qr, opts.barCode);

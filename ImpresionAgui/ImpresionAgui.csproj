@@ -56,6 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationManager.cs" />
+    <Compile Include="HostConfiguration.cs" />
+    <Compile Include="PairData.cs" />
     <Compile Include="FormEleccion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\agui_negro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
