@@ -140,7 +140,7 @@ namespace ImpresionAgui
             // Configurar impresora
             Printer SATOPrinter = new Printer();
             SATOPrinter.Interface = Printer.InterfaceType.TCPIP;
-            SATOPrinter.TCPIPAddress = "192.168.1.52";
+            SATOPrinter.TCPIPAddress = "192.168.1.200";
             SATOPrinter.TCPIPPort = "9100";
 
             // Generar comando de impresión
@@ -160,7 +160,7 @@ namespace ImpresionAgui
                 // Enviar comando a la impresora
                 try
                 {
-                    //SATOPrinter.Send(cmddata);
+                    SATOPrinter.Send(cmddata);
                 }
                 catch (Exception exception)
                 {
@@ -187,8 +187,9 @@ namespace ImpresionAgui
 
             //Console.Write(comando);
 
+            String epc = ListaEPC[numCaja];
             // Definir el EPC a escribir
-            comando += "<ESC>IP0e:z,d:" + ListaEPC[numCaja] + ";";
+            comando += "<ESC>IP0e:z,d:" + epc + ";";
 
             Console.Write(comando);
 

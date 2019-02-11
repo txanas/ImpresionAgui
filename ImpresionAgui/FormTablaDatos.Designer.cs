@@ -106,10 +106,10 @@
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox2.Image = global::ImpresionAgui.Properties.Resources.LOGO_MYRUNS_VECTORIAL;
-            this.pictureBox2.Location = new System.Drawing.Point(938, 0);
+            this.pictureBox2.Location = new System.Drawing.Point(933, 0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.pictureBox2.Size = new System.Drawing.Size(117, 100);
+            this.pictureBox2.Size = new System.Drawing.Size(122, 100);
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
             // 

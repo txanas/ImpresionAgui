@@ -106,7 +106,7 @@ namespace ImpresionAgui
             // Configurar impresora
             Printer SATOPrinter = new Printer();
             SATOPrinter.Interface = Printer.InterfaceType.TCPIP;
-            SATOPrinter.TCPIPAddress = "192.168.1.52";
+            SATOPrinter.TCPIPAddress = "192.168.1.200";
             SATOPrinter.TCPIPPort = "9100";
 
             // Generar comando de impresión
@@ -124,7 +124,7 @@ namespace ImpresionAgui
             // Enviar comando a la impresora
             try
             {
-                //SATOPrinter.Send(cmddata);
+                SATOPrinter.Send(cmddata);
             }
             catch (Exception exception)
             {
@@ -207,7 +207,7 @@ namespace ImpresionAgui
             //comando += Utils.ConvertGraphicToSBPL(open.FileName);
 
             // Cantidad de etiquetas a imprimir
-            comando += "<ESC>Q" + numcajas;
+           // comando += "<ESC>Q" + numcajas;
 
             // Fin del comando
             comando += "<ESC>Z<ETX>";
