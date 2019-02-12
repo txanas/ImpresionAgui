@@ -27,7 +27,7 @@ namespace ImpresionAgui
         private HttpClient httpClient;
 
         private String EPC;
-        string[] ListaEPC = new string[20];
+        string[,] ListaEPC = new string[20,20];
         int numTotalCajas;
 
 
@@ -128,13 +128,14 @@ namespace ImpresionAgui
                     var contents = await response.Content.ReadAsStringAsync();
 
                     //EPC = contents;
-                    ListaEPC[j] = contents;
+                    ListaEPC[i,j] = contents;
 
                     //Console.WriteLine(contents);
                 }
             }
         }
         int numCaja;
+        int numeroFila;
 
         private void imprimir()
         {
@@ -147,28 +148,35 @@ namespace ImpresionAgui
             // Generar comando de impresión
             //String PrintCommand = getCommandoImpresion(opts.cantidad, opts.epc, opts.linea1, opts.linea2, opts.linea3, opts.qr, opts.barCode);
 
-            for (numCaja = 0; numCaja < numTotalCajas; numCaja++)
+            int numCajasFila = 0;
+
+            for (numeroFila = 0; numeroFila < tablaDatos.RowCount-1; numeroFila++)
             {
-                String PrintCommand = getCommandoImpresion();
-                // Cambiar los caracteres de escape
-                PrintCommand = PrintCommand.Replace("<STX>", ((char)02).ToString());
-                PrintCommand = PrintCommand.Replace("<ETX>", ((char)03).ToString());
-                PrintCommand = PrintCommand.Replace("<ESC>", ((char)27).ToString());
-
-                // Convertir a bytes
-                byte[] cmddata = Utils.StringToByteArray(PrintCommand);
-
-                // Enviar comando a la impresora
-                try
+                numCajasFila = Int32.Parse(tablaDatos.Rows[numeroFila].Cells["Ncajas"].Value.ToString());
+                for (numCaja = 0; numCaja < numCajasFila; numCaja++)
                 {
-                    SATOPrinter.Send(cmddata);
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine(exception.ToString());
-                    salirConError("Se ha producido un error desconocido al enviar el comando a la impresora. Compruebe la dirección IP y si la impresora está correctamente conectada.", ERROR_CODE_ERROR_DESCONOCIDO);
+                    String PrintCommand = getCommandoImpresion();
+                    // Cambiar los caracteres de escape
+                    PrintCommand = PrintCommand.Replace("<STX>", ((char)02).ToString());
+                    PrintCommand = PrintCommand.Replace("<ETX>", ((char)03).ToString());
+                    PrintCommand = PrintCommand.Replace("<ESC>", ((char)27).ToString());
+
+                    // Convertir a bytes
+                    byte[] cmddata = Utils.StringToByteArray(PrintCommand);
+
+                    // Enviar comando a la impresora
+                    try
+                    {
+                        SATOPrinter.Send(cmddata);
+                    }
+                    catch (Exception exception)
+                    {
+                        Console.WriteLine(exception.ToString());
+                        salirConError("Se ha producido un error desconocido al enviar el comando a la impresora. Compruebe la dirección IP y si la impresora está correctamente conectada.", ERROR_CODE_ERROR_DESCONOCIDO);
+                    }
                 }
             }
+
         }
 
         private String getCommandoImpresion()
@@ -177,18 +185,18 @@ namespace ImpresionAgui
             // Inicio del comando
             String comando = "<STX><ESC>A";
 
-            String articulo = tablaDatos.CurrentRow.Cells["Articulo"].Value.ToString();
-            String cantidad = tablaDatos.CurrentRow.Cells["Cantidad"].Value.ToString();
-            String lote = tablaDatos.CurrentRow.Cells["Lote"].Value.ToString();
-            String pedido = tablaDatos.CurrentRow.Cells["Pedido"].Value.ToString();
-            String albaran = tablaDatos.CurrentRow.Cells["Albaran"].Value.ToString();
-            String control = tablaDatos.CurrentRow.Cells["Control"].Value.ToString();
-            String numcajas = tablaDatos.CurrentRow.Cells["Ncajas"].Value.ToString();
+            String articulo = tablaDatos.Rows[numeroFila].Cells["Articulo"].Value.ToString();
+            String cantidad = tablaDatos.Rows[numeroFila].Cells["Cantidad"].Value.ToString();
+            String lote = tablaDatos.Rows[numeroFila].Cells["Lote"].Value.ToString();
+            String pedido = tablaDatos.Rows[numeroFila].Cells["Pedido"].Value.ToString();
+            String albaran = tablaDatos.Rows[numeroFila].Cells["Albaran"].Value.ToString();
+            String control = tablaDatos.Rows[numeroFila].Cells["Control"].Value.ToString();
+            String numcajas = tablaDatos.Rows[numeroFila].Cells["Ncajas"].Value.ToString();
             //String destino = tablaDatos.CurrentRow.Cells["Destino"].Value.ToString();
 
             //Console.Write(comando);
 
-            String epc = ListaEPC[numCaja];
+            String epc = ListaEPC[numeroFila,numCaja];
             // Definir el EPC a escribir
             comando += "<ESC>IP0e:z,d:" + epc + ";";
 
