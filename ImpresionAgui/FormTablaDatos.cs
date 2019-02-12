@@ -95,9 +95,6 @@ namespace ImpresionAgui
         {
             DataGridViewRow selectedRow = dataGridDatosBD.Rows[0];
 
-            //llamar a la funcion imprimir del form nuevaetiqueta o crear un nuevo metodo
-            //FormNuevaEtiqueta etiqueta = new FormNuevaEtiqueta();
-            //etiqueta.imprimir();
             imprimir();
             MessageBox.Show("Imprimiendo etiqueta...");
         }
@@ -110,10 +107,9 @@ namespace ImpresionAgui
             SATOPrinter.TCPIPAddress = pairData.IP;
             SATOPrinter.TCPIPPort = pairData.Port;
 
-            // Generar comando de impresión
-            //String PrintCommand = getCommandoImpresion(opts.cantidad, opts.epc, opts.linea1, opts.linea2, opts.linea3, opts.qr, opts.barCode);
-
+            //Generar comando de impresión
             String PrintCommand = getCommandoImpresion();
+
             // Cambiar los caracteres de escape
             PrintCommand = PrintCommand.Replace("<STX>", ((char)02).ToString());
             PrintCommand = PrintCommand.Replace("<ETX>", ((char)03).ToString());
@@ -144,8 +140,6 @@ namespace ImpresionAgui
             //Darkness
             //comando += "<ESC>#E3A";
 
-             //DataGridViewRow selectedRow = dataGridDatosBD.Rows[0];
-
             String articulo = dataGridDatosBD.CurrentRow.Cells["Articulo"].Value.ToString();
             String cantidad = dataGridDatosBD.CurrentRow.Cells["Cantidad"].Value.ToString();
             String lote = dataGridDatosBD.CurrentRow.Cells["Lote"].Value.ToString();
@@ -160,14 +154,21 @@ namespace ImpresionAgui
             // Definir el EPC a escribir
             comando += "<ESC>IP0e:z,d:" + epc + ";";
 
+            string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
+            string FileName = string.Format("{0}Resources\\agui_negro.png", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
+
+            //Graphic prueba
+            comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";
+            comando += Utils.ConvertGraphicToSBPL(FileName);
+
             //Articulo y su barCode
-            comando += comando += "<ESC>V00<ESC>H20";
+            comando += "<ESC>V00<ESC>H20";
             comando += "<ESC>B103100*" + articulo + "*";
             comando += "<ESC>V120<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + articulo;
 
             //Cantidad y su barCode
-            comando += "<ESC>V170<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,025,025," + "CANT. " + cantidad;
-            comando += comando += "<ESC>V155<ESC>H250";
+            comando += "<ESC>V165<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,025,025," + "CANT. " + cantidad;
+            comando += "<ESC>V160<ESC>H250";
             comando += "<ESC>B103040*" + cantidad + "*";
 
             //Albaran 
@@ -190,22 +191,11 @@ namespace ImpresionAgui
             comando += "<ESC>V90<ESC>H540<ESC>P4<ESC>L0101<ESC>RDB00,025,025," + "CONTROL ";
             comando += "<ESC>V120<ESC>H560<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + control;
 
-            //Lote, numero y barcode (faltan el codigo y barcode, pero hay que darles la vuelta)
+            //Lote, numero y barcode
             comando += "<ESC>%1<ESC>V140<ESC>H690<ESC>P4<ESC>L0101<ESC>RDB00,030,030," + "LOTE ";
             comando += "<ESC>%1<ESC>V140<ESC>H730<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + lote;
-            comando += comando += "<ESC>V190<ESC>H760";
+            comando += "<ESC>%1<ESC>V160<ESC>H760";
             comando += "<ESC>B103040*" + lote + "*";
-
-            string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
-            string FileName = string.Format("{0}Resources\\agui_negro.png", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
-            //string ruta = FileName.Replace(@"\", "\");
-           // FileName = FileName.Replace("\\\\", "\\");    
-           // FileName = FileName.Replace("/", @"\");
-
-            //Graphic prueba
-            comando += "<ESC>V00<ESC>H540<ESC>PGh0AH<ESC>GH006006";
-            comando += Utils.ConvertGraphicToSBPL(FileName);
-            //comando += Utils.ConvertGraphicToSBPL(open.FileName);
 
             // Cantidad de etiquetas a imprimir
            // comando += "<ESC>Q" + numcajas;
@@ -227,19 +217,16 @@ namespace ImpresionAgui
         private void txtFecha_TextChanged(object sender, EventArgs e)
         {
             filtrar();
-            //this.tabla.DefaultView.RowFilter = $"fecha LIKE '{txtFecha.Text}%'";
         }
 
         private void txtAlbaran_TextChanged(object sender, EventArgs e)
         {
             filtrar();
-            //this.tabla.DefaultView.RowFilter = $"albaran LIKE '{txtAlbaran.Text}%'";
         }
 
         private void txtArticulo_TextChanged(object sender, EventArgs e)
         {
             filtrar();
-            //this.tabla.DefaultView.RowFilter = $"articulo LIKE '{txtArticulo.Text}%'";
         }
 
         public DataTable ToDataTable<T>(IList<T> data)

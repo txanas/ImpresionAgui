@@ -194,14 +194,21 @@ namespace ImpresionAgui
 
             Console.Write(comando);
 
+            string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
+            string FileName = string.Format("{0}Resources\\agui_negro.png", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
+
+            //Graphic prueba
+            comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";
+            comando += Utils.ConvertGraphicToSBPL(FileName);
+
             //Articulo y su barCode
-            comando += comando += "<ESC>V05<ESC>H20";
+            comando += "<ESC>V00<ESC>H20";
             comando += "<ESC>B103100*" + articulo + "*";
             comando += "<ESC>V120<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + articulo;
 
             //Cantidad y su barCode
-            comando += "<ESC>V170<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,025,025," + "CANT. " + cantidad;
-            comando += comando += "<ESC>V155<ESC>H250";
+            comando += "<ESC>V165<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,025,025," + "CANT. " + cantidad;
+            comando += "<ESC>V160<ESC>H250";
             comando += "<ESC>B103040*" + cantidad + "*";
 
             //Albaran 
@@ -211,9 +218,9 @@ namespace ImpresionAgui
             comando += "<ESC>V135<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "PEDIDO " + pedido;
 
             //Numero de cajas y caja actual
-            int numeroTotalCajas = Int32.Parse(numcajas);
+            //int numeroTotalCajas = Int32.Parse(numcajas);
 
-            //comando += "<ESC>V20<ESC>H500<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + numCaja + "/" + numeroTotalCajas;
+            //comando += "<ESC>V20<ESC>H500<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + caja + "/" + numcajas;
 
             //if (caja != numeroTotalCajas)
             //{
@@ -224,19 +231,11 @@ namespace ImpresionAgui
             comando += "<ESC>V90<ESC>H540<ESC>P4<ESC>L0101<ESC>RDB00,025,025," + "CONTROL ";
             comando += "<ESC>V120<ESC>H560<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + control;
 
-            //Lote, numero y barcode (faltan el codigo y barcode, pero hay que darles la vuelta)
+            //Lote, numero y barcode
             comando += "<ESC>%1<ESC>V140<ESC>H690<ESC>P4<ESC>L0101<ESC>RDB00,030,030," + "LOTE ";
             comando += "<ESC>%1<ESC>V140<ESC>H730<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + lote;
-            comando += comando += "<ESC>V190<ESC>H760";
+            comando += "<ESC>%1<ESC>V160<ESC>H760";
             comando += "<ESC>B103040*" + lote + "*";
-
-            string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
-            string FileName = string.Format("{0}Resources\\agui_negro.png", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
-
-            //Graphic prueba
-            comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";
-            comando += Utils.ConvertGraphicToSBPL(FileName);
-            //comando += Utils.ConvertGraphicToSBPL(open.FileName);
 
             // Cantidad de etiquetas a imprimir
             //comando += "<ESC>Q" + numcajas;
