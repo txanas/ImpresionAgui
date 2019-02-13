@@ -55,6 +55,8 @@ namespace ImpresionAgui
             imprimir();
 
             MessageBox.Show("Imprimiendo etiqueta...");
+            await Task.Delay(3000);
+
         }
 
         Datos dato = new Datos();
