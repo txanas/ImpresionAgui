@@ -1,26 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CommandLine;
-using SATOPrinterAPI;
 using System.Net;
 using System.Net.Http;
-using System.IO;
-using Newtonsoft.Json;
-using System.Collections.Specialized;
-using System.Configuration;
 
 namespace ImpresionAgui
 {
     public partial class FormNuevaEtiqueta : Form
     {
-        private static readonly int ERROR_CODE_ERROR_DESCONOCIDO = -4;
 
         public PairData pairData;
         
@@ -55,7 +43,6 @@ namespace ImpresionAgui
             imprimir();
 
             MessageBox.Show("Imprimiendo etiqueta...");
-            await Task.Delay(3000);
 
         }
 
@@ -65,7 +52,6 @@ namespace ImpresionAgui
         {
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://agui.myruns.com");
-            //httpClient.BaseAddress = new Uri("http://localhost:800");
 
             for (int i = 0; i < tablaDatos.RowCount - 1; i++)
             {
@@ -131,18 +117,14 @@ namespace ImpresionAgui
             // Configurar impresora
             SatoPrinter satoPrinter = new SatoPrinter(pairData.IP, pairData.Port);
 
-            // Generar comando de impresión
-            //String PrintCommand = getCommandoImpresion(opts.cantidad, opts.epc, opts.linea1, opts.linea2, opts.linea3, opts.qr, opts.barCode);
-
             int numCajasFila = 0;
 
             for (numeroFila = 0; numeroFila < tablaDatos.RowCount-1; numeroFila++)
             {
                 numCajasFila = Int32.Parse(tablaDatos.Rows[numeroFila].Cells["Ncajas"].Value.ToString());
                 for (numCaja = 0; numCaja < numCajasFila; numCaja++)
-                {
-                
-                    // Enviar comando a la impresora
+                {  
+
                     var fila = tablaDatos.Rows[numeroFila].Cells;
 
                     String articulo = fila["Articulo"].Value.ToString();

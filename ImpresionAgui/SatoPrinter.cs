@@ -56,12 +56,17 @@ namespace ImpresionAgui
             comando += "<ESC>IP0e:z,d:" + epc + ";";
 
             string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
-            string FileName = string.Format("{0}Resources\\agui_negro.png", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
+            string FileName = string.Format("{0}Resources\\agui_bmp.bmp", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
 
             //Graphic prueba
             // TODO da error en impresora
             //comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";
             //comando += Utils.ConvertGraphicToSBPL(FileName);
+
+             //Articulo y su barCode
+            comando += "<ESC>V00<ESC>H20";
+            comando += "<ESC>B103100*" + articulo + "*";
+            comando += "<ESC>V120<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + articulo;
 
             //Articulo y su barCode
             comando += "<ESC>V00<ESC>H20";
@@ -96,7 +101,7 @@ namespace ImpresionAgui
             //Lote, numero y barcode
             comando += "<ESC>%1<ESC>V140<ESC>H690<ESC>P4<ESC>L0101<ESC>RDB00,030,030," + "LOTE ";
             comando += "<ESC>%1<ESC>V140<ESC>H730<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + lote;
-            comando += "<ESC>%1<ESC>V160<ESC>H760";
+            comando += "<ESC>%1<ESC>V180<ESC>H760";
             comando += "<ESC>B103040*" + lote + "*";
 
             // Cantidad de etiquetas a imprimir

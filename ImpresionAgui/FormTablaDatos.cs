@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.Net.Http;
-using SATOPrinterAPI;
-using System.Resources;
-using System.IO;
-
 
 namespace ImpresionAgui
 {
@@ -22,11 +15,6 @@ namespace ImpresionAgui
         private List<Datos> data;
         DataTable tabla;
         public PairData pairData;
-
-        private static readonly int ERROR_CODE_PARAMS = -1;
-        private static readonly int ERROR_CODE_EPC_NOT_HEX = -2;
-        private static readonly int ERROR_CODE_EPC_NOT_24_CHARS = -3;
-        private static readonly int ERROR_CODE_ERROR_DESCONOCIDO = -4;
 
         public FormTablaDatos()
         {
@@ -61,25 +49,8 @@ namespace ImpresionAgui
         {
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://agui.myruns.com");
-            //httpClient.BaseAddress = new Uri("http://localhost:800");
-
-            /* POST: Para recibir información ENVIANDO DATOS
-            //Articulo
-            string fecha = txtFecha.Text;
-            string albaran = txtAlbaran.Text;
-            string articulo = txtArticulo.Text;
-
-            var values = new Dictionary<string, string>
-            {{"Fecha", fecha}, {"Albaran", albaran}, {"Articulo", articulo}};
-
-            var content = new FormUrlEncodedContent(values); 
-            var response = await httpClient.PostAsync("api/leer_basedatos.php", content);
-            var contents = await response.Content.ReadAsStringAsync();
-          //  data = contents;
-            Console.WriteLine(contents);*/
 
             //GET: para recibir informacion SIN enviar datos
-
             var response = await httpClient.GetAsync("api/leer_basedatos.php");
             var contents = await response.Content.ReadAsStringAsync();
 
@@ -101,7 +72,6 @@ namespace ImpresionAgui
 
         private void imprimir()
         {
-            // Configurar impresora
             // Configurar impresora
             SatoPrinter satoPrinter = new SatoPrinter(pairData.IP, pairData.Port);
 
