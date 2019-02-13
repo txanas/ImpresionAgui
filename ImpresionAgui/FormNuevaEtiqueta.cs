@@ -36,20 +36,7 @@ namespace ImpresionAgui
             InitializeComponent();
             pairData = ConfigurationManager.getInstance().getPairData();
         }
-
-        private static void salirConError(String mensaje, int errorCode)
-        {
-            if (mensaje != null)
-            {
-                Console.WriteLine(mensaje);
-            }
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("Pulse enter para salir");
-            var exitInput = Console.ReadLine();
-            Environment.Exit(errorCode);
-        }
-
+    
 
         private static async Task checkResponseForError(HttpResponseMessage response)
         {
@@ -140,10 +127,7 @@ namespace ImpresionAgui
         private void imprimir()
         {
             // Configurar impresora
-            Printer SATOPrinter = new Printer();
-            SATOPrinter.Interface = Printer.InterfaceType.TCPIP;
-            SATOPrinter.TCPIPAddress = pairData.IP;
-            SATOPrinter.TCPIPPort = pairData.Port;
+            SatoPrinter satoPrinter = new SatoPrinter(pairData.IP, pairData.Port);
 
             // Generar comando de impresión
             //String PrintCommand = getCommandoImpresion(opts.cantidad, opts.epc, opts.linea1, opts.linea2, opts.linea3, opts.qr, opts.barCode);
@@ -155,103 +139,24 @@ namespace ImpresionAgui
                 numCajasFila = Int32.Parse(tablaDatos.Rows[numeroFila].Cells["Ncajas"].Value.ToString());
                 for (numCaja = 0; numCaja < numCajasFila; numCaja++)
                 {
-                    String PrintCommand = getCommandoImpresion();
-                    // Cambiar los caracteres de escape
-                    PrintCommand = PrintCommand.Replace("<STX>", ((char)02).ToString());
-                    PrintCommand = PrintCommand.Replace("<ETX>", ((char)03).ToString());
-                    PrintCommand = PrintCommand.Replace("<ESC>", ((char)27).ToString());
-
-                    // Convertir a bytes
-                    byte[] cmddata = Utils.StringToByteArray(PrintCommand);
-
+                
                     // Enviar comando a la impresora
-                    try
-                    {
-                        SATOPrinter.Send(cmddata);
-                    }
-                    catch (Exception exception)
-                    {
-                        Console.WriteLine(exception.ToString());
-                        salirConError("Se ha producido un error desconocido al enviar el comando a la impresora. Compruebe la dirección IP y si la impresora está correctamente conectada.", ERROR_CODE_ERROR_DESCONOCIDO);
-                    }
+                    var fila = tablaDatos.Rows[numeroFila].Cells;
+
+                    String articulo = fila["Articulo"].Value.ToString();
+                    String cantidad = fila["Cantidad"].Value.ToString();
+                    String lote = fila["Lote"].Value.ToString();
+                    String pedido = fila["Pedido"].Value.ToString();
+                    String albaran = fila["Albaran"].Value.ToString();
+                    String control = fila["Control"].Value.ToString();
+                    String numcajas = fila["Ncajas"].Value.ToString();
+
+                    String epc = ListaEPC[numeroFila, numCaja];
+
+                    satoPrinter.imprimir(articulo, cantidad, lote, pedido, albaran, control, numcajas, epc);
                 }
             }
 
-        }
-
-        private String getCommandoImpresion()
-        {
-
-            // Inicio del comando
-            String comando = "<STX><ESC>A";
-
-            String articulo = tablaDatos.Rows[numeroFila].Cells["Articulo"].Value.ToString();
-            String cantidad = tablaDatos.Rows[numeroFila].Cells["Cantidad"].Value.ToString();
-            String lote = tablaDatos.Rows[numeroFila].Cells["Lote"].Value.ToString();
-            String pedido = tablaDatos.Rows[numeroFila].Cells["Pedido"].Value.ToString();
-            String albaran = tablaDatos.Rows[numeroFila].Cells["Albaran"].Value.ToString();
-            String control = tablaDatos.Rows[numeroFila].Cells["Control"].Value.ToString();
-            String numcajas = tablaDatos.Rows[numeroFila].Cells["Ncajas"].Value.ToString();
-            //String destino = tablaDatos.CurrentRow.Cells["Destino"].Value.ToString();
-
-            //Console.Write(comando);
-
-            String epc = ListaEPC[numeroFila,numCaja];
-            // Definir el EPC a escribir
-            comando += "<ESC>IP0e:z,d:" + epc + ";";
-
-            Console.Write(comando);
-
-            string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
-            string FileName = string.Format("{0}Resources\\agui_negro.png", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
-
-            //Graphic prueba
-            comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";
-            comando += Utils.ConvertGraphicToSBPL(FileName);
-
-            //Articulo y su barCode
-            comando += "<ESC>V00<ESC>H20";
-            comando += "<ESC>B103100*" + articulo + "*";
-            comando += "<ESC>V120<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + articulo;
-
-            //Cantidad y su barCode
-            comando += "<ESC>V165<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,025,025," + "CANT. " + cantidad;
-            comando += "<ESC>V160<ESC>H250";
-            comando += "<ESC>B103040*" + cantidad + "*";
-
-            //Albaran 
-            comando += "<ESC>V110<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "ALBARAN " + albaran;
-
-            //Pedido
-            comando += "<ESC>V135<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "PEDIDO " + pedido;
-
-            //Numero de cajas y caja actual
-            //int numeroTotalCajas = Int32.Parse(numcajas);
-
-            //comando += "<ESC>V20<ESC>H500<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + caja + "/" + numcajas;
-
-            //if (caja != numeroTotalCajas)
-            //{
-            //    caja++;
-            //}
-
-            //Control
-            comando += "<ESC>V90<ESC>H540<ESC>P4<ESC>L0101<ESC>RDB00,025,025," + "CONTROL ";
-            comando += "<ESC>V120<ESC>H560<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + control;
-
-            //Lote, numero y barcode
-            comando += "<ESC>%1<ESC>V140<ESC>H690<ESC>P4<ESC>L0101<ESC>RDB00,030,030," + "LOTE ";
-            comando += "<ESC>%1<ESC>V140<ESC>H730<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + lote;
-            comando += "<ESC>%1<ESC>V160<ESC>H760";
-            comando += "<ESC>B103040*" + lote + "*";
-
-            // Cantidad de etiquetas a imprimir
-            //comando += "<ESC>Q" + numcajas;
-
-            // Fin del comando
-            comando += "<ESC>Z<ETX>";
-
-            return comando;
         }
 
         private void btnExistente_Click(object sender, EventArgs e)
