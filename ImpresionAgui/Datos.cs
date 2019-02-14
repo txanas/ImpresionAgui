@@ -20,10 +20,10 @@ namespace ImpresionAgui
         public string LOTE { get; set; }
         [JsonProperty("PEDIDO")]
         public string PEDIDO { get; set; }
+        [JsonProperty("LINEA")]
+        public string LINEA { get; set; }
         [JsonProperty("ALBARAN")]
         public string ALBARAN { get; set; }
-        [JsonProperty("CONTROL")]
-        public string CONTROL { get; set; }
         [JsonProperty("NCAJAS")]
         public string NCAJAS { get; set; }
         [JsonProperty("EPC")]

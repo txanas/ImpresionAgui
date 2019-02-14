@@ -11,10 +11,7 @@ namespace ImpresionAgui
     {
 
         public PairData pairData;
-        
         private HttpClient httpClient;
-
-        private String EPC;
         string[,] ListaEPC = new string[20,20];
         int numTotalCajas;
 
@@ -52,6 +49,7 @@ namespace ImpresionAgui
         {
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://agui.myruns.com");
+           // httpClient.BaseAddress = new Uri("http://localhost:800");
 
             for (int i = 0; i < tablaDatos.RowCount - 1; i++)
             {
@@ -67,12 +65,12 @@ namespace ImpresionAgui
                 //Pedido
                 dato.PEDIDO = tablaDatos.Rows[i].Cells["Pedido"].Value.ToString();
                 Console.WriteLine("Pedido: " + dato.PEDIDO + " ");
+                //Linea
+                dato.LINEA = tablaDatos.Rows[i].Cells["Linea"].Value.ToString();
+                Console.WriteLine("Linea: " + dato.LINEA + " ");
                 //Albaran
                 dato.ALBARAN = tablaDatos.Rows[i].Cells["Albaran"].Value.ToString();
                 Console.WriteLine("Albaran: " + dato.ALBARAN + " ");
-                //Control
-                dato.CONTROL = tablaDatos.Rows[i].Cells["Control"].Value.ToString();
-                Console.WriteLine("Control: " + dato.CONTROL + " ");
                 //Numero cajas
                 dato.NCAJAS = tablaDatos.Rows[i].Cells["Ncajas"].Value.ToString();
                 Console.WriteLine("Ncajas: " + dato.NCAJAS + " ");
@@ -89,8 +87,8 @@ namespace ImpresionAgui
                         { "Cantidad",    dato.CANTIDAD},
                         { "Lote",        dato.LOTE},
                         { "Pedido",      dato.PEDIDO},
+                        { "Linea",       dato.LINEA},
                         { "Albaran",     dato.ALBARAN},
-                        { "Control",     dato.CONTROL},
                         { "NCajas",      dato.NCAJAS}
                        //{ "Destino",     dato.destino},
                     };
@@ -105,7 +103,7 @@ namespace ImpresionAgui
                     //EPC = contents;
                     ListaEPC[i,j] = contents;
 
-                    //Console.WriteLine(contents);
+                    Console.WriteLine(contents);
                 }
             }
         }
@@ -131,13 +129,13 @@ namespace ImpresionAgui
                     String cantidad = fila["Cantidad"].Value.ToString();
                     String lote = fila["Lote"].Value.ToString();
                     String pedido = fila["Pedido"].Value.ToString();
+                    String linea = fila["Linea"].Value.ToString();
                     String albaran = fila["Albaran"].Value.ToString();
-                    String control = fila["Control"].Value.ToString();
                     String numcajas = fila["Ncajas"].Value.ToString();
 
                     String epc = ListaEPC[numeroFila, numCaja];
 
-                    satoPrinter.imprimir(articulo, cantidad, lote, pedido, albaran, control, numcajas, epc);
+                    satoPrinter.imprimir(articulo, cantidad, lote, pedido, albaran, linea, numcajas, epc);
                 }
             }
 

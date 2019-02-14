@@ -30,13 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNuevaEtiqueta));
             this.tablaDatos = new System.Windows.Forms.DataGridView();
-            this.Articulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lote = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Albaran = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ncajas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_imprimir = new System.Windows.Forms.Button();
             this.btnExistente = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -44,6 +37,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.Articulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Albaran = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ncajas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tablaDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -61,49 +61,14 @@
             this.Cantidad,
             this.Lote,
             this.Pedido,
+            this.Linea,
             this.Albaran,
-            this.Control,
             this.Ncajas});
             this.tablaDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tablaDatos.Location = new System.Drawing.Point(10, 0);
             this.tablaDatos.Name = "tablaDatos";
             this.tablaDatos.Size = new System.Drawing.Size(757, 374);
             this.tablaDatos.TabIndex = 0;
-            // 
-            // Articulo
-            // 
-            this.Articulo.HeaderText = "ARTICULO";
-            this.Articulo.Name = "Articulo";
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "CANTIDAD";
-            this.Cantidad.Name = "Cantidad";
-            // 
-            // Lote
-            // 
-            this.Lote.HeaderText = "LOTE";
-            this.Lote.Name = "Lote";
-            // 
-            // Pedido
-            // 
-            this.Pedido.HeaderText = "PEDIDO";
-            this.Pedido.Name = "Pedido";
-            // 
-            // Albaran
-            // 
-            this.Albaran.HeaderText = "ALBARÁN";
-            this.Albaran.Name = "Albaran";
-            // 
-            // Control
-            // 
-            this.Control.HeaderText = "CONTROL";
-            this.Control.Name = "Control";
-            // 
-            // Ncajas
-            // 
-            this.Ncajas.HeaderText = "NCAJAS";
-            this.Ncajas.Name = "Ncajas";
             // 
             // btn_imprimir
             // 
@@ -187,6 +152,41 @@
             this.panel3.Size = new System.Drawing.Size(777, 374);
             this.panel3.TabIndex = 7;
             // 
+            // Articulo
+            // 
+            this.Articulo.HeaderText = "ARTICULO";
+            this.Articulo.Name = "Articulo";
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "CANTIDAD";
+            this.Cantidad.Name = "Cantidad";
+            // 
+            // Lote
+            // 
+            this.Lote.HeaderText = "LOTE";
+            this.Lote.Name = "Lote";
+            // 
+            // Pedido
+            // 
+            this.Pedido.HeaderText = "PEDIDO";
+            this.Pedido.Name = "Pedido";
+            // 
+            // Linea
+            // 
+            this.Linea.HeaderText = "LINEA";
+            this.Linea.Name = "Linea";
+            // 
+            // Albaran
+            // 
+            this.Albaran.HeaderText = "ALBARÁN";
+            this.Albaran.Name = "Albaran";
+            // 
+            // Ncajas
+            // 
+            this.Ncajas.HeaderText = "NCAJAS";
+            this.Ncajas.Name = "Ncajas";
+            // 
             // FormNuevaEtiqueta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,18 +216,18 @@
         private System.Windows.Forms.DataGridView tablaDatos;
         private System.Windows.Forms.Button btn_imprimir;
         private System.Windows.Forms.Button btnExistente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Articulo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Lote;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Pedido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Albaran;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Control;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ncajas;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Articulo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Lote;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Linea;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Albaran;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ncajas;
     }
 }
 

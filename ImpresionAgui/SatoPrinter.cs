@@ -32,7 +32,7 @@ namespace ImpresionAgui
             // Enviar comando a la impresora
             try
             {
-                printer.Send(cmddata);
+                //printer.Send(cmddata);
             }
             catch (Exception exception)
             {
@@ -59,7 +59,7 @@ namespace ImpresionAgui
             string FileName = string.Format("{0}Resources\\agui_bmp.bmp", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
 
             //Graphic prueba
-            // TODO da error en impresora
+            //TODO da error en impresora
             //comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";
             //comando += Utils.ConvertGraphicToSBPL(FileName);
 

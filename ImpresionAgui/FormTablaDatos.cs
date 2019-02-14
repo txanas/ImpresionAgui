@@ -49,6 +49,7 @@ namespace ImpresionAgui
         {
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://agui.myruns.com");
+            //httpClient.BaseAddress = new Uri("http://localhost:800");
 
             //GET: para recibir informacion SIN enviar datos
             var response = await httpClient.GetAsync("api/leer_basedatos.php");
@@ -79,15 +80,13 @@ namespace ImpresionAgui
             String cantidad = dataGridDatosBD.CurrentRow.Cells["Cantidad"].Value.ToString();
             String lote = dataGridDatosBD.CurrentRow.Cells["Lote"].Value.ToString();
             String pedido = dataGridDatosBD.CurrentRow.Cells["Pedido"].Value.ToString();
+            String linea = dataGridDatosBD.CurrentRow.Cells["Linea"].Value.ToString();
             String albaran = dataGridDatosBD.CurrentRow.Cells["Albaran"].Value.ToString();
-            String control = dataGridDatosBD.CurrentRow.Cells["Control"].Value.ToString();
             String numcajas = dataGridDatosBD.CurrentRow.Cells["Ncajas"].Value.ToString();
             String epc = dataGridDatosBD.CurrentRow.Cells["EPC"].Value.ToString();
 
-            satoPrinter.imprimir(articulo, cantidad, lote, pedido, albaran, control, numcajas, epc);
+            satoPrinter.imprimir(articulo, cantidad, lote, pedido, albaran, linea, numcajas, epc);
         }
-
-        int caja;
 
         private void filtrar()
         {
