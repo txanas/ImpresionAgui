@@ -32,7 +32,7 @@ namespace ImpresionAgui
             // Enviar comando a la impresora
             try
             {
-                printer.Send(cmddata);
+               printer.Send(cmddata);
             }
             catch (Exception exception)
             {

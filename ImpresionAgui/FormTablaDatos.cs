@@ -76,16 +76,21 @@ namespace ImpresionAgui
             // Configurar impresora
             SatoPrinter satoPrinter = new SatoPrinter(pairData.IP, pairData.Port);
 
-            String articulo = dataGridDatosBD.CurrentRow.Cells["Articulo"].Value.ToString();
-            String cantidad = dataGridDatosBD.CurrentRow.Cells["Cantidad"].Value.ToString();
-            String lote = dataGridDatosBD.CurrentRow.Cells["Lote"].Value.ToString();
-            String pedido = dataGridDatosBD.CurrentRow.Cells["Pedido"].Value.ToString();
-            String linea = dataGridDatosBD.CurrentRow.Cells["Linea"].Value.ToString();
-            String albaran = dataGridDatosBD.CurrentRow.Cells["Albaran"].Value.ToString();
-            String numcajas = dataGridDatosBD.CurrentRow.Cells["Ncajas"].Value.ToString();
-            String epc = dataGridDatosBD.CurrentRow.Cells["EPC"].Value.ToString();
+            for (int i = 0; i < dataGridDatosBD.SelectedRows.Count; i++)
+            {
+                var fila = dataGridDatosBD.SelectedRows[i].Cells;
 
-            satoPrinter.imprimir(articulo, cantidad, lote, pedido, albaran, linea, numcajas, epc);
+                String articulo = fila["Articulo"].Value.ToString();
+                String cantidad = fila["Cantidad"].Value.ToString();
+                String lote = fila["Lote"].Value.ToString();
+                String pedido = fila["Pedido"].Value.ToString();
+                String linea = fila["Linea"].Value.ToString();
+                String albaran = fila["Albaran"].Value.ToString();
+                String numcajas = fila["Ncajas"].Value.ToString();
+                String epc = fila["EPC"].Value.ToString();
+
+                satoPrinter.imprimir(articulo, cantidad, lote, pedido, albaran, linea, numcajas, epc);
+            }
         }
 
         private void filtrar()
