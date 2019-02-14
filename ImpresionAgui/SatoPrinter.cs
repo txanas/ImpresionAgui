@@ -18,9 +18,9 @@ namespace ImpresionAgui
             printer.TCPIPPort = port;
         }
 
-        public void imprimir(String articulo, String cantidad, String lote, String pedido, String albaran, String control, String numcajas, String epc)
+        public void imprimir(String articulo, String cantidad, String lote, String pedido, String albaran, String linea, String numcajas, String epc)
         {
-            String PrintCommand = getCommandoImpresion(articulo, cantidad, lote, pedido, albaran, control, numcajas, epc);
+            String PrintCommand = getCommandoImpresion(articulo, cantidad, lote, pedido, albaran, linea, numcajas, epc);
             // Cambiar los caracteres de escape
             PrintCommand = PrintCommand.Replace("<STX>", ((char)02).ToString());
             PrintCommand = PrintCommand.Replace("<ETX>", ((char)03).ToString());
@@ -32,7 +32,7 @@ namespace ImpresionAgui
             // Enviar comando a la impresora
             try
             {
-                //printer.Send(cmddata);
+                printer.Send(cmddata);
             }
             catch (Exception exception)
             {
@@ -43,7 +43,7 @@ namespace ImpresionAgui
         }
 
 
-        private String getCommandoImpresion(String articulo, String cantidad, String lote, String pedido, String albaran, String control, String numcajas, String epc)
+        private String getCommandoImpresion(String articulo, String cantidad, String lote, String pedido, String albaran, String linea, String numcajas, String epc)
         {
             // Inicio del comando
             String comando = "<STX><ESC>A";
@@ -94,9 +94,9 @@ namespace ImpresionAgui
             //    caja++;
             //}
 
-            //Control
-            comando += "<ESC>V90<ESC>H540<ESC>P4<ESC>L0101<ESC>RDB00,025,025," + "CONTROL ";
-            comando += "<ESC>V120<ESC>H560<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + control;
+            //Linea
+            comando += "<ESC>V90<ESC>H540<ESC>P4<ESC>L0101<ESC>RDB00,025,025," + "LINEA ";
+            comando += "<ESC>V120<ESC>H560<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + linea;
 
             //Lote, numero y barcode
             comando += "<ESC>%1<ESC>V140<ESC>H690<ESC>P4<ESC>L0101<ESC>RDB00,030,030," + "LOTE ";
