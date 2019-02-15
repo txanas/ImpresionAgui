@@ -30,13 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNuevaEtiqueta));
             this.tablaDatos = new System.Windows.Forms.DataGridView();
-            this.btn_imprimir = new System.Windows.Forms.Button();
-            this.btnExistente = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.Articulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Lote = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,6 +37,13 @@
             this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Albaran = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ncajas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_imprimir = new System.Windows.Forms.Button();
+            this.btnExistente = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.tablaDatos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -69,6 +69,41 @@
             this.tablaDatos.Name = "tablaDatos";
             this.tablaDatos.Size = new System.Drawing.Size(757, 374);
             this.tablaDatos.TabIndex = 0;
+            // 
+            // Articulo
+            // 
+            this.Articulo.HeaderText = "ARTICULO";
+            this.Articulo.Name = "Articulo";
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "CANTIDAD";
+            this.Cantidad.Name = "Cantidad";
+            // 
+            // Lote
+            // 
+            this.Lote.HeaderText = "LOTE";
+            this.Lote.Name = "Lote";
+            // 
+            // Pedido
+            // 
+            this.Pedido.HeaderText = "PEDIDO";
+            this.Pedido.Name = "Pedido";
+            // 
+            // Linea
+            // 
+            this.Linea.HeaderText = "LINEA";
+            this.Linea.Name = "Linea";
+            // 
+            // Albaran
+            // 
+            this.Albaran.HeaderText = "ALBARÁN";
+            this.Albaran.Name = "Albaran";
+            // 
+            // Ncajas
+            // 
+            this.Ncajas.HeaderText = "NCAJAS";
+            this.Ncajas.Name = "Ncajas";
             // 
             // btn_imprimir
             // 
@@ -151,41 +186,6 @@
             this.panel3.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.panel3.Size = new System.Drawing.Size(777, 374);
             this.panel3.TabIndex = 7;
-            // 
-            // Articulo
-            // 
-            this.Articulo.HeaderText = "ARTICULO";
-            this.Articulo.Name = "Articulo";
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "CANTIDAD";
-            this.Cantidad.Name = "Cantidad";
-            // 
-            // Lote
-            // 
-            this.Lote.HeaderText = "LOTE";
-            this.Lote.Name = "Lote";
-            // 
-            // Pedido
-            // 
-            this.Pedido.HeaderText = "PEDIDO";
-            this.Pedido.Name = "Pedido";
-            // 
-            // Linea
-            // 
-            this.Linea.HeaderText = "LINEA";
-            this.Linea.Name = "Linea";
-            // 
-            // Albaran
-            // 
-            this.Albaran.HeaderText = "ALBARÁN";
-            this.Albaran.Name = "Albaran";
-            // 
-            // Ncajas
-            // 
-            this.Ncajas.HeaderText = "NCAJAS";
-            this.Ncajas.Name = "Ncajas";
             // 
             // FormNuevaEtiqueta
             // 

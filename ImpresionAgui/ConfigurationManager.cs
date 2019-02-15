@@ -101,7 +101,5 @@ namespace ImpresionAgui
             writer.Flush();
             writer.Close();
         }
-
-
     }
 }

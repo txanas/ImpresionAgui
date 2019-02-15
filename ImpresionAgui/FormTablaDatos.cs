@@ -11,7 +11,6 @@ namespace ImpresionAgui
 {
     public partial class FormTablaDatos : Form
     {
-        private String datosBD;
         private List<Datos> data;
         DataTable tabla;
         public PairData pairData;
