@@ -27,10 +27,12 @@ C:\Users\Propietario\Documents\GitHub\ImpresionAgui\ImpresionAgui\bin\Debug\SATO
 C:\Users\Propietario\Documents\GitHub\ImpresionAgui\ImpresionAgui\bin\Debug\CommandLine.xml
 C:\Users\Propietario\Documents\GitHub\ImpresionAgui\ImpresionAgui\bin\Debug\Newtonsoft.Json.pdb
 C:\Users\Propietario\Documents\GitHub\ImpresionAgui\ImpresionAgui\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Propietario\Documents\GitHub\ImpresionAgui\ImpresionAgui\obj\Debug\ImpresionAgui.csprojResolveAssemblyReference.cache
 C:\Users\Propietario\Documents\GitHub\ImpresionAgui\ImpresionAgui\obj\Debug\ImpresionAgui.FormEleccion.resources
 C:\Users\Propietario\Documents\GitHub\ImpresionAgui\ImpresionAgui\obj\Debug\ImpresionAgui.FormExistente.resources
 C:\Users\Propietario\Documents\GitHub\ImpresionAgui\ImpresionAgui\obj\Debug\ImpresionAgui.FormNuevaEtiqueta.resources
 C:\Users\Propietario\Documents\GitHub\ImpresionAgui\ImpresionAgui\obj\Debug\ImpresionAgui.FormTablaDatos.resources
 C:\Users\Propietario\Documents\GitHub\ImpresionAgui\ImpresionAgui\obj\Debug\ImpresionAgui.Properties.Resources.resources
 C:\Users\Propietario\Documents\GitHub\ImpresionAgui\ImpresionAgui\obj\Debug\ImpresionAgui.csproj.GenerateResource.Cache
+C:\Users\Propietario\Documents\GitHub\ImpresionAgui\ImpresionAgui\obj\Debug\ImpresionAgui.csproj.CoreCompileInputs.cache
+C:\Users\Propietario\Documents\GitHub\ImpresionAgui\ImpresionAgui\obj\Debug\ImpresionAgui.csproj.CopyComplete
+C:\Users\Propietario\Documents\GitHub\ImpresionAgui\ImpresionAgui\obj\Debug\ImpresionAgui.csprojAssemblyReference.cache
