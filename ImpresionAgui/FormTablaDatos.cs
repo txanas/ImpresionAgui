@@ -40,6 +40,7 @@ namespace ImpresionAgui
             this.Hide();
             Form existente = new FormNuevaEtiqueta();
             existente.ShowDialog();
+            this.Close();
         }
 
         private HttpClient httpClient;

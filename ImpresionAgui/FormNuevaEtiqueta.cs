@@ -49,31 +49,31 @@ namespace ImpresionAgui
         {
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("https://agui.myruns.com");
-           // httpClient.BaseAddress = new Uri("http://localhost:800");
+            //httpClient.BaseAddress = new Uri("http://localhost:800");
 
             for (int i = 0; i < tablaDatos.RowCount - 1; i++)
             {
                 //Articulo
                 dato.ARTICULO = tablaDatos.Rows[i].Cells["Articulo"].Value.ToString();
-                Console.WriteLine("Articulo: " + dato.ARTICULO + " ");
+                //Console.WriteLine("Articulo: " + dato.ARTICULO + " ");
                 //Cantidad
                 dato.CANTIDAD = tablaDatos.Rows[i].Cells["Cantidad"].Value.ToString();
-                Console.WriteLine("Cantidad: " + dato.CANTIDAD + " ");
+                //Console.WriteLine("Cantidad: " + dato.CANTIDAD + " ");
                 //Lote
                 dato.LOTE = tablaDatos.Rows[i].Cells["Lote"].Value.ToString();
-                Console.WriteLine("Lote: " + dato.LOTE + " ");
+                //Console.WriteLine("Lote: " + dato.LOTE + " ");
                 //Pedido
                 dato.PEDIDO = tablaDatos.Rows[i].Cells["Pedido"].Value.ToString();
-                Console.WriteLine("Pedido: " + dato.PEDIDO + " ");
+                //Console.WriteLine("Pedido: " + dato.PEDIDO + " ");
                 //Linea
                 dato.LINEA = tablaDatos.Rows[i].Cells["Linea"].Value.ToString();
-                Console.WriteLine("Linea: " + dato.LINEA + " ");
+                //Console.WriteLine("Linea: " + dato.LINEA + " ");
                 //Albaran
                 dato.ALBARAN = tablaDatos.Rows[i].Cells["Albaran"].Value.ToString();
-                Console.WriteLine("Albaran: " + dato.ALBARAN + " ");
+                //Console.WriteLine("Albaran: " + dato.ALBARAN + " ");
                 //Numero cajas
                 dato.NCAJAS = tablaDatos.Rows[i].Cells["Ncajas"].Value.ToString();
-                Console.WriteLine("Ncajas: " + dato.NCAJAS + " ");
+                //Console.WriteLine("Ncajas: " + dato.NCAJAS + " ");
                 //Destino
                 //dato.destino = tablaDatos.Rows[i].Cells["Destino"].Value.ToString();
                 //Console.WriteLine("Destino: " + dato.destino + " ");
@@ -146,6 +146,7 @@ namespace ImpresionAgui
             this.Hide();
             Form eleccion = new FormTablaDatos();
             eleccion.ShowDialog();
+            this.Close();
         }
     }
 }
