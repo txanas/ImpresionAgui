@@ -12,7 +12,7 @@ namespace ImpresionAgui
 
         public PairData pairData;
         private HttpClient httpClient;
-        string[,] ListaEPC = new string[20,20];
+        string[,] ListaEPC = new string[500,500];
         int numTotalCajas;
 
 
