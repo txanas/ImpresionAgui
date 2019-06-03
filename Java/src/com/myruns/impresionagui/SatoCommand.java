@@ -27,6 +27,11 @@ public class SatoCommand {
         return command.getBytes();
     }
 
+    public static String getCommandoImpresion(Articulo articulo)
+    {
+        return getCommandoImpresion(articulo.articulo, String.valueOf(articulo.cantidad), articulo.lote, String.valueOf(articulo.pedido), articulo.albaran, String.valueOf(articulo.numLinea), articulo.epc);
+    }
+
     public static String getCommandoImpresion(String articulo, String cantidad, String lote, String pedido, String albaran, String linea, String epc)
     {
         // Inicio del comando

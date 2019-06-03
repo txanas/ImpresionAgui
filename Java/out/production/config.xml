@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration>
+    <db_host>107.6.185.250</db_host>
+    <db_port>3306</db_port>
+    <db_name>myrunsco_aguipruebas</db_name>
+    <db_user>myrunsco_aguip</db_user>
+    <db_password>myrunsmyruns</db_password>
+</configuration>
