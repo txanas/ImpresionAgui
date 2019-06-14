@@ -34,7 +34,7 @@ namespace ImpresionAgui
         private async void btn_imprimir_Click(object sender, EventArgs e)
         {
             //enviar los datos al servidor
-            await enviarDatos();
+            //await enviarDatos();
 
             //imprimir etiqueta con su epc
             imprimir();

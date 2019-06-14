@@ -60,13 +60,13 @@ namespace ImpresionAgui
 
             //Graphic prueba
             //TODO da error en impresora
-            //comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";
-            //comando += Utils.ConvertGraphicToSBPL(FileName);
+            comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";
+            comando += Utils.ConvertGraphicToSBPL(FileName);
 
-             //Articulo y su barCode
-            comando += "<ESC>V10<ESC>H20";
-            comando += "<ESC>B103100*" + articulo + "*";
-            comando += "<ESC>V130<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + articulo;
+            // //Articulo y su barCode
+            //comando += "<ESC>V10<ESC>H20";
+            //comando += "<ESC>B10280*" + articulo + "*";
+            //comando += "<ESC>V130<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + articulo;
 
             //Articulo y su barCode
             comando += "<ESC>V10<ESC>H20";
@@ -76,7 +76,7 @@ namespace ImpresionAgui
             //Cantidad y su barCode
             comando += "<ESC>V175<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB00,025,025," + "CANT. " + cantidad;
             comando += "<ESC>V170<ESC>H250";
-            comando += "<ESC>B103040*" + cantidad + "*";
+            comando += "<ESC>B102040*" + cantidad + "*";
 
             //Albaran 
             comando += "<ESC>V120<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "ALBARAN " + albaran;
@@ -95,14 +95,20 @@ namespace ImpresionAgui
             //}
 
             //Linea
-            comando += "<ESC>V90<ESC>H540<ESC>P4<ESC>L0101<ESC>RDB00,025,025," + "LINEA ";
-            comando += "<ESC>V120<ESC>H560<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + linea;
+            comando += "<ESC>V120<ESC>H560<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "LINEA ";
+            comando += "<ESC>V145<ESC>H580<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + linea;
 
+            ////Lote, numero y barcode
+            //comando += "<ESC>%1<ESC>V140<ESC>H690<ESC>P4<ESC>L0101<ESC>RDB00,030,030," + "LOTE ";
+            //comando += "<ESC>%1<ESC>V140<ESC>H730<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + lote;
+            //comando += "<ESC>%1<ESC>V200<ESC>H760";
+            //comando += "<ESC>B102040*" + lote + "*";
             //Lote, numero y barcode
-            comando += "<ESC>%1<ESC>V140<ESC>H690<ESC>P4<ESC>L0101<ESC>RDB00,030,030," + "LOTE ";
-            comando += "<ESC>%1<ESC>V140<ESC>H730<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + lote;
-            comando += "<ESC>%1<ESC>V200<ESC>H760";
-            comando += "<ESC>B103040*" + lote + "*";
+            comando += "<ESC>V120<ESC>H650<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "LOTE ";
+            comando += "<ESC>V145<ESC>H650<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + lote;
+            comando += "<ESC>V170<ESC>H540";
+            comando += "<ESC>B102040*" + lote + "*";
+
 
             // Cantidad de etiquetas a imprimir
             // comando += "<ESC>Q" + numcajas;
