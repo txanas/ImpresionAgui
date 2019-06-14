@@ -59,9 +59,9 @@ namespace ImpresionAgui
             string FileName = string.Format("{0}Resources\\agui_bmp.bmp", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
 
             //Graphic prueba
-            //TODO da error en impresora
-            comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";
-            comando += Utils.ConvertGraphicToSBPL(FileName);
+            ////TODO da error en impresora
+            //comando += "<ESC>V10<ESC>H540<ESC>PGh0AH<ESC>GH006006";
+            //comando += Utils.ConvertGraphicToSBPL(FileName);
 
             // //Articulo y su barCode
             //comando += "<ESC>V10<ESC>H20";
