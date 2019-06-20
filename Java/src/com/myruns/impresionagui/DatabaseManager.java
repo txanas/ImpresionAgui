@@ -15,7 +15,7 @@ public class DatabaseManager {
         Configuration conf = ConfigurationManager.get().getConfiguration();
 
         // IP address
-        String dbIP = "jdbc:mysql://" + conf.db_host + ":" + String.valueOf(conf.db_port) + "/" + conf.db_name + "?serverTimezone=" + TimeZone.getDefault().getID();
+        String dbIP = "jdbc:mysql://" + conf.db_host + ":" + String.valueOf(conf.db_port) + "/" + conf.db_name + "?serverTimezone=" + TimeZone.getDefault().getID() + "&characterEncoding=utf8";
 
         System.out.println("Conectando a base de datos...");
         connection = DriverManager.getConnection(dbIP, conf.db_user, conf.db_password);
