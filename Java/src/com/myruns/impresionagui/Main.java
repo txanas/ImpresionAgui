@@ -1,6 +1,8 @@
 package com.myruns.impresionagui;
 
-import java.io.File;
+import com.beust.jcommander.JCommander;
+
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -11,12 +13,14 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) throws URISyntaxException {
-        // Configuration
-        File file = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile();
-        //ConfigurationManager.get().init(file);
+
+        Configuration configuration = new Configuration();
+        JCommander jCommander = new JCommander(configuration, args);
+
+
         DatabaseManager databaseManager = new DatabaseManager();
         try {
-            databaseManager.connect();
+            databaseManager.connect(configuration);
 
             while (true){
                 ArrayList<Articulo> articulosParaImprimir = databaseManager.getArticulosPendientesParaImprimir();
