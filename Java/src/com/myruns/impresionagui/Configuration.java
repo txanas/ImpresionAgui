@@ -1,9 +1,7 @@
 package com.myruns.impresionagui;
 
 
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
 public class Configuration {
 
     public String db_host = "107.6.185.250";
