@@ -8,11 +8,10 @@ public class DatabaseManager {
 
     public Connection connection;
 
-    public void connect() throws SQLException {
+    public void connect(Configuration conf) throws SQLException {
 
         closeConnection();
 
-        Configuration conf = ConfigurationManager.get().getConfiguration();
 
         // IP address
         String dbIP = "jdbc:mysql://" + conf.db_host + ":" + String.valueOf(conf.db_port) + "/" + conf.db_name + "?serverTimezone=" + TimeZone.getDefault().getID() + "&characterEncoding=utf8";

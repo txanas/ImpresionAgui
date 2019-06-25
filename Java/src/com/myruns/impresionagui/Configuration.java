@@ -1,15 +1,23 @@
 package com.myruns.impresionagui;
 
 
-import javax.xml.bind.annotation.XmlRootElement;
+import com.beust.jcommander.Parameter;
 
-@XmlRootElement
 public class Configuration {
 
-    public String db_host = "107.6.185.250";
+    @Parameter(names = { "-dbHost" }, description = "Dirección IP donde se encuentra de la base de datos", required = true)
+    public String db_host;
+
+    @Parameter(names = { "-dbPort" }, description = "Nombre de la base de datos")
     public int db_port = 3306;
-    public String db_name = "myrunsco_aguipruebas";
-    public String db_user = "myrunsco_aguip";
-    public String db_password = "myrunsmyruns";
+
+    @Parameter(names = { "-dbName" }, description = "Nombre de la base de datos", required = true)
+    public String db_name;
+
+    @Parameter(names = { "-dbUser" }, description = "Usuario de la base de datos", required = true)
+    public String db_user;
+
+    @Parameter(names = { "-dbPassword" }, description = "Contraseña de la base de datos", required = true)
+    public String db_password;
 
 }

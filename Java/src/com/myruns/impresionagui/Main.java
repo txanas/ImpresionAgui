@@ -1,6 +1,8 @@
 package com.myruns.impresionagui;
 
-import java.io.File;
+import com.beust.jcommander.JCommander;
+
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -11,14 +13,13 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) throws URISyntaxException {
-        // Configuration
-        File file = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile();
-        //ConfigurationManager.get().init(file);
+
+        Configuration configuration = new Configuration();
+        JCommander jCommander = new JCommander(configuration, args);
+
         DatabaseManager databaseManager = new DatabaseManager();
         try {
-            databaseManager.connect();
-
-            while (true){
+            databaseManager.connect(configuration);
                 ArrayList<Articulo> articulosParaImprimir = databaseManager.getArticulosPendientesParaImprimir();
                 if (articulosParaImprimir.size() > 0){
                     System.out.println("Hay " + articulosParaImprimir.size() + " impresiones pendientes");
@@ -40,11 +41,9 @@ public class Main {
                 }else{
                     System.out.println("Nada para imprimir");
                 }
-                Thread.sleep(100);
-            }
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
