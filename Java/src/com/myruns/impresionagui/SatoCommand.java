@@ -48,7 +48,7 @@ public class SatoCommand {
 
         //Articulo y su barCode
         comando += "<ESC>V10<ESC>H20";
-        comando += "<ESC>B103100*" + articulo.toUpperCase() + "*";
+        comando += "<ESC>B103100*" + articulo.replaceAll("Ñ", "N").replaceAll("ñ", "n").toUpperCase() + "*";
         comando += "<ESC>V130<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB@0,040,040," + articulo;
 
         //Cantidad y su barCode
