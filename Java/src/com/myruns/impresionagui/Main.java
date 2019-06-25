@@ -17,12 +17,9 @@ public class Main {
         Configuration configuration = new Configuration();
         JCommander jCommander = new JCommander(configuration, args);
 
-
         DatabaseManager databaseManager = new DatabaseManager();
         try {
             databaseManager.connect(configuration);
-
-            while (true){
                 ArrayList<Articulo> articulosParaImprimir = databaseManager.getArticulosPendientesParaImprimir();
                 if (articulosParaImprimir.size() > 0){
                     System.out.println("Hay " + articulosParaImprimir.size() + " impresiones pendientes");
@@ -44,11 +41,9 @@ public class Main {
                 }else{
                     System.out.println("Nada para imprimir");
                 }
-                Thread.sleep(100);
-            }
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -7,19 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db09c705-20fc-431f-90dc-5d22e679bff7" name="Default Changelist" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jcommander_1_27.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Java/com/myruns/impresionagui/Articulo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Java/com/myruns/impresionagui/Configuration.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Java/com/myruns/impresionagui/ConfigurationManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Java/com/myruns/impresionagui/DatabaseManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Java/com/myruns/impresionagui/Main.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Java/com/myruns/impresionagui/SatoCommand.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/myruns/impresionagui/ConfigurationManager.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Output/Java.jar" afterPath="$PROJECT_DIR$/../Output/Java.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Java.iml" afterPath="$PROJECT_DIR$/Java.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myruns/impresionagui/Configuration.java" afterPath="$PROJECT_DIR$/src/com/myruns/impresionagui/Configuration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myruns/impresionagui/DatabaseManager.java" afterPath="$PROJECT_DIR$/src/com/myruns/impresionagui/DatabaseManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myruns/impresionagui/Main.java" afterPath="$PROJECT_DIR$/src/com/myruns/impresionagui/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -35,21 +22,11 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/myruns/impresionagui/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="261">
+              <caret line="17" column="60" lean-forward="false" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Configuration.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/myruns/impresionagui/Configuration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -469,14 +446,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/myruns/impresionagui/Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/myruns/impresionagui/Articulo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -493,10 +462,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/myruns/impresionagui/Configuration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/myruns/impresionagui/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="261">
+          <caret line="17" column="60" lean-forward="false" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
