@@ -29,10 +29,10 @@ public class SatoCommand {
 
     public static String getCommandoImpresion(Articulo articulo)
     {
-        return getCommandoImpresion(articulo.articulo, String.valueOf(articulo.cantidad), articulo.lote, String.valueOf(articulo.pedido), articulo.albaran, String.valueOf(articulo.numLinea), articulo.epc);
+        return getCommandoImpresion(articulo.articulo, String.valueOf(articulo.cantidad), articulo.lote, String.valueOf(articulo.pedido), articulo.albaran, String.valueOf(articulo.numLinea), articulo.epc, articulo.control);
     }
 
-    public static String getCommandoImpresion(String articulo, String cantidad, String lote, String pedido, String albaran, String linea, String epc)
+    public static String getCommandoImpresion(String articulo, String cantidad, String lote, String pedido, String albaran, String linea, String epc, String control)
     {
         // Inicio del comando
         String comando = "<STX><ESC>A";
@@ -61,6 +61,15 @@ public class SatoCommand {
 
         //Pedido
         comando += "<ESC>V145<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "PEDIDO " + pedido;
+
+        //Pedido
+        comando += "<ESC>V10<ESC>H680<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "EPC " + epc.substring(epc.length() - 4);
+
+        //Control
+        if (control != null && control.trim().length() > 0){
+            comando += "<ESC>V35<ESC>H680<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "Control " + control;
+        }
+
 
         //Linea
         comando += "<ESC>V120<ESC>H560<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "LINEA ";

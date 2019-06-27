@@ -59,6 +59,7 @@ public class DatabaseManager {
             articulo.albaran = rs.getString("albaran");
             articulo.estadoSpyro = rs.getInt("estadoSpyro");
             articulo.epc = rs.getString("epc");
+            articulo.control = rs.getString("control");
             articulo.printerIP = rs.getString("impresora");
 
             articulos.add(articulo);

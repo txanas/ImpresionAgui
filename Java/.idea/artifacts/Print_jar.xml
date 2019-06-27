@@ -4,6 +4,7 @@
     <root id="archive" name="Java.jar">
       <element id="module-output" name="Java" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/mysql-connector-java-8.0.15.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/jcommander-1.27.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
