@@ -67,7 +67,7 @@ public class SatoCommand {
 
         //Control
         if (control != null && control.trim().length() > 0){
-            comando += "<ESC>V35<ESC>H680<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "Control " + control;
+            comando += "<ESC>V35<ESC>H680<ESC>P4<ESC>L0101<ESC>RDB00,050,050," + control;
         }
 
 
