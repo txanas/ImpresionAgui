@@ -85,9 +85,20 @@ public class SatoCommand {
         // comando += "<ESC>Q" + numcajas;
 
         // Fin del comando
-        comando += "<ESC>Z<ETX>";
+        //comando += "<ESC>Z<ETX>";
 
         return comando;
+    }
+
+    public static String getComandoImagen(long size){
+
+        String comando = "<ESC>V10<ESC>H580";
+        // Tamano de la imagen
+        comando += "<ESC>L0101";
+        comando += "<ESC>GM" + String.format("%05d", size);
+        comando += ",";
+        return comando;
+
     }
 
 }

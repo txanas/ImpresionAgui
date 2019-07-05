@@ -3,6 +3,7 @@ package com.myruns.impresionagui;
 import com.beust.jcommander.JCommander;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -16,6 +17,8 @@ public class Main {
 
         Configuration configuration = new Configuration();
         JCommander jCommander = new JCommander(configuration, args);
+
+
 
         DatabaseManager databaseManager = new DatabaseManager();
         try {
