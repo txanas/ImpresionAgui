@@ -9,7 +9,6 @@ public class PrintTestMain {
 
         File aguiLogo = new File("agui_logo.bmp");
         if (aguiLogo.exists()){
-
             System.out.print(aguiLogo.getAbsolutePath());
         }
         System.out.println(aguiLogo.getAbsolutePath());
@@ -25,23 +24,12 @@ public class PrintTestMain {
         articulo.consigna = "CS";
         articulo.control = "CN";
 
-        SatoCommand satoCommand = new SatoCommand(SatoCommand.getCommandoImpresion(articulo));
 
         Socket socket = new Socket("192.168.1.200", 9100);
         OutputStream output = socket.getOutputStream();
-        output.write(satoCommand.convertToSatoCommand());
 
-        // Send image
-        output.write(new SatoCommand(SatoCommand.getComandoImagen(aguiLogo.length())).convertToSatoCommand());
-        InputStream fis=new FileInputStream(aguiLogo);
-        byte[] buff = new byte[1024];
-        int read;
-        while((read=fis.read(buff))>=0){
-            output.write(buff,0,read);
-        }
+        SatoCommand.sendComandoImpresion(output, articulo, aguiLogo);
 
-        output.write(new SatoCommand("<ESC>Z<ETX>").convertToSatoCommand());
-        output.flush();
         Thread.sleep(300);
         output.close();
         socket.close();

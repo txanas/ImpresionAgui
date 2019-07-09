@@ -27,11 +27,11 @@ public class Main {
                 if (articulosParaImprimir.size() > 0){
                     System.out.println("Hay " + articulosParaImprimir.size() + " impresiones pendientes");
                     for (Articulo articulo: articulosParaImprimir){
-                        SatoCommand satoCommand = new SatoCommand(SatoCommand.getCommandoImpresion(articulo));
+
                         try {
                             Socket socket = new Socket(articulo.printerIP, 9100);
                             OutputStream output = socket.getOutputStream();
-                            output.write(satoCommand.convertToSatoCommand());
+                            SatoCommand.sendComandoImpresion(output, articulo, null);
                             output.flush();
                             Thread.sleep(300);
                             output.close();

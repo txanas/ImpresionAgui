@@ -1,5 +1,6 @@
 package com.myruns.impresionagui;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class SatoCommand {
@@ -19,7 +20,7 @@ public class SatoCommand {
         this.text = text;
     }
 
-    public byte[] convertToSatoCommand(){
+    private byte[] convertToSatoCommand(){
         String command = text;
         for (int i=0; i<replaceKeys.length; i++){
             command = command.replaceAll(replaceKeys[i], replaceResult[i]);
@@ -27,13 +28,11 @@ public class SatoCommand {
         return command.getBytes();
     }
 
-    public static String getCommandoImpresion(Articulo articulo)
-    {
-        return getCommandoImpresion(articulo.articulo, String.valueOf(articulo.cantidad), articulo.lote, String.valueOf(articulo.pedido), articulo.albaran, String.valueOf(articulo.numLinea), articulo.epc, articulo.control);
+    public static void sendComandoImpresion(OutputStream outputStream, Articulo articulo, File imageFile) throws IOException {
+        sendComandoImpresion(outputStream, articulo.articulo, String.valueOf(articulo.cantidad), articulo.lote, String.valueOf(articulo.pedido), articulo.albaran, String.valueOf(articulo.numLinea), articulo.epc, articulo.control, imageFile);
     }
 
-    public static String getCommandoImpresion(String articulo, String cantidad, String lote, String pedido, String albaran, String linea, String epc, String control)
-    {
+    public static void sendComandoImpresion(OutputStream output, String articulo, String cantidad, String lote, String pedido, String albaran, String linea, String epc, String control, File image) throws IOException {
         // Inicio del comando
         String comando = "<STX><ESC>A";
 
@@ -81,16 +80,22 @@ public class SatoCommand {
         comando += "<ESC>V170<ESC>H540";
         comando += "<ESC>B102040*" + lote + "*";
 
-        // Cantidad de etiquetas a imprimir
-        // comando += "<ESC>Q" + numcajas;
+        output.write(new SatoCommand(comando).convertToSatoCommand());
 
-        // Fin del comando
-        //comando += "<ESC>Z<ETX>";
+        // imprimir imagen
+        output.write(new SatoCommand(SatoCommand.getComandoImagen(image.length())).convertToSatoCommand());
+        InputStream fis=new FileInputStream(image);
+        byte[] buff = new byte[1024];
+        int read;
+        while((read=fis.read(buff))>=0){
+            output.write(buff,0,read);
+        }
 
-        return comando;
+        output.write(new SatoCommand("<ESC>Z<ETX>").convertToSatoCommand());
+        output.flush();
     }
 
-    public static String getComandoImagen(long size){
+    private static String getComandoImagen(long size){
 
         String comando = "<ESC>V10<ESC>H580";
         // Tamano de la imagen
