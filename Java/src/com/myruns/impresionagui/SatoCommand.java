@@ -1,6 +1,7 @@
 package com.myruns.impresionagui;
 
 import java.io.*;
+import java.text.Normalizer;
 import java.util.ArrayList;
 
 public class SatoCommand {
@@ -47,7 +48,7 @@ public class SatoCommand {
 
         //Articulo y su barCode
         comando += "<ESC>V10<ESC>H20";
-        comando += "<ESC>B103100*" + articulo.replaceAll("Ñ", "N").replaceAll("ñ", "n").toUpperCase() + "*";
+        comando += "<ESC>BG03100" + unaccent(articulo.replaceAll("Ñ", "N").replaceAll("ñ", "n").toUpperCase());
         comando += "<ESC>V130<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB@0,040,040," + articulo;
 
         //Cantidad y su barCode
@@ -104,6 +105,15 @@ public class SatoCommand {
         comando += ",";
         return comando;
 
+    }
+
+    /**
+     * Remove toda a acentuação da string substituindo por caracteres simples sem acento.
+     */
+    public static String unaccent(String src) {
+        return Normalizer
+                .normalize(src, Normalizer.Form.NFD)
+                .replaceAll("[^\\p{ASCII}]", "");
     }
 
 }

@@ -14,7 +14,7 @@ public class PrintTestMain {
         System.out.println(aguiLogo.getAbsolutePath());
 
         Articulo articulo = new Articulo();
-        articulo.articulo = "Prueba";
+        articulo.articulo = "Pruebá_2_";
         articulo.epc = "616775690101010100000001";
         articulo.albaran = "Albaran";
         articulo.lote = "5000";
