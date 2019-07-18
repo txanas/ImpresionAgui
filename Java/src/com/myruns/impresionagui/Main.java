@@ -18,7 +18,11 @@ public class Main {
         Configuration configuration = new Configuration();
         JCommander jCommander = new JCommander(configuration, args);
 
-
+        File aguiLogo = new File("agui_logo.bmp");
+        if (!aguiLogo.exists()){
+            System.out.println("Fichero de logo no encontrado:");
+            System.out.println(aguiLogo.getAbsolutePath());
+        }
 
         DatabaseManager databaseManager = new DatabaseManager();
         try {
@@ -31,7 +35,7 @@ public class Main {
                         try {
                             Socket socket = new Socket(articulo.printerIP, 9100);
                             OutputStream output = socket.getOutputStream();
-                            SatoCommand.sendComandoImpresion(output, articulo, null);
+                            SatoCommand.sendComandoImpresion(output, articulo, aguiLogo);
                             output.flush();
                             Thread.sleep(300);
                             output.close();
