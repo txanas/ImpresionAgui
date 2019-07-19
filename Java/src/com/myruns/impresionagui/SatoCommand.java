@@ -62,12 +62,12 @@ public class SatoCommand {
         //Pedido
         comando += "<ESC>V145<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "PEDIDO " + pedido;
 
-        //Pedido
-        comando += "<ESC>V10<ESC>H680<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "EPC " + epc.substring(epc.length() - 4);
+        //EPC
+        comando += "<ESC>V10<ESC>H580<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "EPC " + epc.substring(epc.length() - 4);
 
         //Control
         if (control != null && control.trim().length() > 0){
-            comando += "<ESC>V35<ESC>H680<ESC>P4<ESC>L0101<ESC>RDB00,050,050," + control;
+            comando += "<ESC>V35<ESC>H580<ESC>P4<ESC>L0101<ESC>RDB00,050,050," + control;
         }
 
 
@@ -98,7 +98,7 @@ public class SatoCommand {
 
     private static String getComandoImagen(long size){
 
-        String comando = "<ESC>V10<ESC>H580";
+        String comando = "<ESC>V10<ESC>H700";
         // Tamano de la imagen
         comando += "<ESC>L0101";
         comando += "<ESC>GM" + String.format("%05d", size);
