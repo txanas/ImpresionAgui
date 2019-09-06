@@ -20,4 +20,7 @@ public class Configuration {
     @Parameter(names = { "-dbPassword" }, description = "Contraseña de la base de datos", required = true)
     public String db_password;
 
+    @Parameter(names = { "-timeout" }, description = "Timeout de conexion con la impresora (ms)", required = true)
+    public int timeout = 15000;
+
 }

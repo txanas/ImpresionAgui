@@ -6,6 +6,7 @@ import com.beust.jcommander.JCommander;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
@@ -33,7 +34,8 @@ public class Main {
                     for (Articulo articulo: articulosParaImprimir){
 
                         try {
-                            Socket socket = new Socket(articulo.printerIP, 9100);
+                            Socket socket = new Socket();
+                            socket.connect(new InetSocketAddress(articulo.printerIP, 9100), configuration.timeout);
                             OutputStream output = socket.getOutputStream();
                             SatoCommand.sendComandoImpresion(output, articulo, aguiLogo);
                             output.flush();
