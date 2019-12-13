@@ -14,7 +14,15 @@ import java.util.ArrayList;
 
 public class Main {
 
+    static int imprimiendo = 0;
+
     public static void main(String[] args) throws URISyntaxException {
+
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                Layout.setEsperando();
+            }
+        });
 
         Configuration configuration = new Configuration();
         JCommander jCommander = new JCommander(configuration, args);
@@ -27,6 +35,7 @@ public class Main {
 
         DatabaseManager databaseManager = new DatabaseManager();
         try {
+
             databaseManager.connect(configuration);
                 ArrayList<Articulo> articulosParaImprimir = databaseManager.getArticulosPendientesParaImprimir();
                 if (articulosParaImprimir.size() > 0){

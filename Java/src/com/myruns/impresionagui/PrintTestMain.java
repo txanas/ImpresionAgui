@@ -13,6 +13,12 @@ public class PrintTestMain {
         }
         System.out.println(aguiLogo.getAbsolutePath());
 
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                Layout.setEsperando();
+            }
+        });
+
         Articulo articulo = new Articulo();
         articulo.articulo = "Pruebá_2_";
         articulo.epc = "616775690101010100000001";
@@ -23,6 +29,7 @@ public class PrintTestMain {
         articulo.pedido = 12345;
         articulo.consigna = "CS";
         articulo.control = "CN";
+
 
 
         Socket socket = new Socket("192.168.1.200", 9100);
