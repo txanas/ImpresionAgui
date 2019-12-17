@@ -1,63 +1,51 @@
 package com.myruns.impresionagui;
-
-import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
- * Created by Propietario on 13/12/2019.
+ * Created by Propietario on 17/12/2019.
  */
-public class Layout {
+public class Layout extends JFrame  {
 
-    public static void addWaiting(Container pane) {
-        pane.setLayout(new FlowLayout(FlowLayout.CENTER,150,150 ));
-        JLabel texto = new JLabel ("Esperando...");
-        texto.setFont(texto.getFont ().deriveFont (34.0f));
-        pane.add(texto);
+    private JLabel text;
 
+    public Layout() {
+        super();
+        configureLayout();
+        text = new JLabel();
+        this.add(text);
     }
 
-    public static void addPrinting(Container pane) {
-        pane.setLayout(new FlowLayout(FlowLayout.CENTER,150,150 ));
-        JLabel texto = new JLabel ("Imprimiendo...");
-        texto.setFont(texto.getFont ().deriveFont (34.0f));
-        pane.add(texto);
-
+    private void configureLayout() {
+        this.setTitle("Impresión");
+        this.setSize(500, 500);
+        this.setLocationRelativeTo(null);
+        this.setLayout(null);
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    /**
-     * Create the GUI and show it.  For thread safety,
-     * this method should be invoked from the
-     * event-dispatching thread.
-     */
-    public static void setEsperando() {
-        //Create and set up the window.
-        JFrame frame = new JFrame("Impresion");
-        //frame.setSize(1000,2000);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public void setWaiting() {
 
-        addWaiting(frame.getContentPane());
+        Font fuente =new Font("TimesRoman", Font.BOLD, 16);
 
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
+        text.setText("Esperando...");    // colocamos un texto a la etiqueta
+        text.setBounds(100, 50, 300, 300);   // colocamos posicion y tamanio al texto (x, y, ancho, alto)
+        text.setFont(text.getFont ().deriveFont (34.0f));
     }
 
-    /**
-     * Create the GUI and show it.  For thread safety,
-     * this method should be invoked from the
-     * event-dispatching thread.
-     */
-    public static void setImprimiendo() {
-        //Create and set up the window.
-        JFrame frame = new JFrame("Impresion");
-        //frame.setSize(1000,2000);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public void setPrinting() {
+        Font fuente =new Font("TimesRoman", Font.BOLD, 16);
 
-        addPrinting(frame.getContentPane());
-
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
+        text.setText("Imprimiendo...");    // colocamos un texto a la etiqueta
+        text.setBounds(100, 50, 300, 300);   // colocamos posicion y tamanio al texto (x, y, ancho, alto)
+        text.setFont(text.getFont ().deriveFont (34.0f));
     }
 
 }

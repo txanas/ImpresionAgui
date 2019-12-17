@@ -14,39 +14,58 @@ import java.util.ArrayList;
 
 public class Main {
 
-    static int imprimiendo = 0;
-
     public static void main(String[] args) throws URISyntaxException {
 
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                Layout.setEsperando();
-            }
-        });
+        File logo = null;
 
         Configuration configuration = new Configuration();
         JCommander jCommander = new JCommander(configuration, args);
 
-        File aguiLogo = new File("agui_logo.bmp");
-        if (!aguiLogo.exists()){
-            System.out.println("Fichero de logo no encontrado:");
-            System.out.println(aguiLogo.getAbsolutePath());
-        }
 
-        DatabaseManager databaseManager = new DatabaseManager();
-        try {
+//        File aguiLogo = new File("agui_logo.bmp");
+//        if (!aguiLogo.exists()){
+//            System.out.println("Fichero de logo no encontrado:");
+//            System.out.println(aguiLogo.getAbsolutePath());
+//        }
+        Layout Lay = new Layout();
+        Lay.setVisible(true);
+        Lay.setWaiting();
 
-            databaseManager.connect(configuration);
+        while (true) {
+            DatabaseManager databaseManager = new DatabaseManager();
+            try {
+
+                databaseManager.connect(configuration);
                 ArrayList<Articulo> articulosParaImprimir = databaseManager.getArticulosPendientesParaImprimir();
                 if (articulosParaImprimir.size() > 0){
                     System.out.println("Hay " + articulosParaImprimir.size() + " impresiones pendientes");
-                    for (Articulo articulo: articulosParaImprimir){
+                    Lay.setPrinting();
 
+
+                    for (Articulo articulo: articulosParaImprimir){
                         try {
                             Socket socket = new Socket();
                             socket.connect(new InetSocketAddress(articulo.printerIP, 9100), configuration.timeout);
                             OutputStream output = socket.getOutputStream();
-                            SatoCommand.sendComandoImpresion(output, articulo, aguiLogo);
+                            char word = articulo.epc.charAt(17);
+                            switch (word){
+                                case 'A' :
+                                    logo = new File("agui_logo.bmp");
+                                    if (!logo.exists()){
+                                        System.out.println("Fichero de logo no encontrado:");
+                                        System.out.println(logo.getAbsolutePath());
+                                    }
+                                    break;
+                                case 'B' :
+                                    logo = new File("bidean_logo.bmp");
+                                    if (!logo.exists()){
+                                        System.out.println("Fichero de logo no encontrado:");
+                                        System.out.println(logo.getAbsolutePath());
+                                    }
+                                    break;
+                            }
+
+                            SatoCommand.sendComandoImpresion(output, articulo, logo);
                             output.flush();
                             Thread.sleep(300);
                             output.close();
@@ -57,13 +76,16 @@ public class Main {
                         }
                     }
                 }else{
+
                     System.out.println("Nada para imprimir");
+                    Lay.setWaiting();
+
                 }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
-
 }
