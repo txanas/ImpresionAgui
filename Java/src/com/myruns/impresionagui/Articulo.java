@@ -3,6 +3,7 @@ package com.myruns.impresionagui;
 public class Articulo {
 
     public int id;
+    public String cliente;
     public String tipoPedido;
     public int pedido;
     public String articulo;
@@ -14,6 +15,8 @@ public class Articulo {
     public int estadoSpyro;
     public String epc;
     public String printerIP;
+    public int peso;
+    public int volumen;
 
     // Generados en Spyro
     public String tipoAlbaranSpyro;

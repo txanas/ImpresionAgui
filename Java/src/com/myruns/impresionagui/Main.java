@@ -47,7 +47,8 @@ public class Main {
                             Socket socket = new Socket();
                             socket.connect(new InetSocketAddress(articulo.printerIP, 9100), configuration.timeout);
                             OutputStream output = socket.getOutputStream();
-                            char word = articulo.epc.charAt(17);
+                            char word = articulo.epc.charAt(16);
+                            boolean aguiMode = false;
                             switch (word){
                                 case 'A' :
                                     logo = new File("agui_logo.bmp");
@@ -55,6 +56,7 @@ public class Main {
                                         System.out.println("Fichero de logo no encontrado:");
                                         System.out.println(logo.getAbsolutePath());
                                     }
+                                    aguiMode = true;
                                     break;
                                 case 'B' :
                                     logo = new File("bidean_logo.bmp");
@@ -65,7 +67,7 @@ public class Main {
                                     break;
                             }
 
-                            SatoCommand.sendComandoImpresion(output, articulo, logo);
+                            SatoCommand.sendComandoImpresion(output, articulo, logo, aguiMode);
                             output.flush();
                             Thread.sleep(300);
                             output.close();

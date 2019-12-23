@@ -41,7 +41,7 @@ public class DatabaseManager {
         Statement st = connection.createStatement();
 
         // execute the query, and get a java resultset
-        ResultSet rs = st.executeQuery("SELECT Articulos.*, Impresoras.ip AS impresora FROM ColaImpresion LEFT JOIN Articulos ON ColaImpresion.epc=Articulos.epc LEFT JOIN Impresoras ON Impresoras.id=ColaImpresion.idImpresora;");
+        ResultSet rs = st.executeQuery("SELECT Articulos.*, Impresoras.ip AS impresora, Cliente.nombre AS nombreCliente FROM ColaImpresion LEFT JOIN Articulos ON ColaImpresion.epc=Articulos.epc LEFT JOIN Impresoras ON Impresoras.id=ColaImpresion.idImpresora LEFT JOIN Cliente ON Articulos.cliente=Cliente.id;");
 
         // iterate through the java resultset
         while (rs.next())
@@ -61,6 +61,9 @@ public class DatabaseManager {
             articulo.epc = rs.getString("epc");
             articulo.control = rs.getString("control");
             articulo.printerIP = rs.getString("impresora");
+            articulo.peso = rs.getInt("peso");
+            articulo.volumen = rs.getInt("volumen");
+            articulo.cliente = rs.getString("nombreCliente");
 
             articulos.add(articulo);
         }

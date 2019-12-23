@@ -29,8 +29,72 @@ public class SatoCommand {
         return command.getBytes();
     }
 
-    public static void sendComandoImpresion(OutputStream outputStream, Articulo articulo, File imageFile) throws IOException {
-        sendComandoImpresion(outputStream, articulo.articulo, String.valueOf(articulo.cantidad), articulo.lote, String.valueOf(articulo.pedido), articulo.albaran, String.valueOf(articulo.numLinea), articulo.epc, articulo.control, imageFile);
+    public static void sendComandoImpresion(OutputStream outputStream, Articulo articulo, File imageFile, boolean aguiMode) throws IOException {
+        if (aguiMode){
+            sendComandoImpresion(outputStream, articulo.articulo, String.valueOf(articulo.cantidad), articulo.lote, String.valueOf(articulo.pedido), articulo.albaran, String.valueOf(articulo.numLinea), articulo.epc, articulo.control, imageFile);
+        }else{
+            sendComandoImpresionBidean(outputStream, articulo.articulo, String.valueOf(articulo.cantidad), articulo.lote, String.valueOf(articulo.peso), articulo.volumen, articulo.cliente, articulo.epc, imageFile);
+
+        }
+    }
+
+
+
+
+    public static void sendComandoImpresionBidean(OutputStream output, String articulo, String cantidad, String lote, String peso, int volumen, String cliente, String epc, File image) throws IOException {
+        // Inicio del comando
+        String comando = "<STX><ESC>A";
+
+        // Definir el EPC a escribir
+        comando += "<ESC>IP0e:z,d:" + epc + ";";
+
+        //string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
+        //string FileName = string.Format("{0}Resources\\agui_bmp.bmp", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")));
+
+        // Uppercase para que funcione el barcode
+        //Articulo y su barCode
+
+        //Articulo y su barCode
+        comando += "<ESC>V10<ESC>H20";
+        comando += "<ESC>BG03100" + unaccent(articulo.replaceAll("Ñ", "N").replaceAll("ñ", "n").toUpperCase());
+        comando += "<ESC>V130<ESC>H20<ESC>P4<ESC>L0101<ESC>RDB@0,040,040," + articulo;
+
+        //Cantidad y su barCode
+        comando += "<ESC>V175<ESC>H250<ESC>P4<ESC>L0101<ESC>RDB00,040,040," + "CANT. " + cantidad;
+        comando += "<ESC>V170<ESC>H20";
+        comando += "<ESC>B102040*" + cantidad + "*";
+
+        //Albaran
+        comando += "<ESC>V120<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "PESO " + peso;
+
+        //Pedido
+        comando += "<ESC>V145<ESC>H310<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "VOLUMEN " + String.format(java.util.Locale.US,"%.2f", (volumen / 1000.0)) + " l";
+
+        //EPC
+        comando += "<ESC>V10<ESC>H580<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "EPC " + epc.substring(epc.length() - 4);
+
+        //Cliente
+        comando += "<ESC>V90<ESC>H580<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + cliente;
+
+        //Lote, numero y barcode
+        comando += "<ESC>V120<ESC>H650<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "LOTE ";
+        comando += "<ESC>V143<ESC>H650<ESC>P4<ESC>L0101<ESC>RDB00,035,035," + lote;
+        comando += "<ESC>V170<ESC>H540";
+        comando += "<ESC>B102040*" + lote + "*";
+
+        output.write(new SatoCommand(comando).convertToSatoCommand());
+
+        // imprimir imagen
+        output.write(new SatoCommand(SatoCommand.getComandoImagen(image.length())).convertToSatoCommand());
+        InputStream fis=new FileInputStream(image);
+        byte[] buff = new byte[1024];
+        int read;
+        while((read=fis.read(buff))>=0){
+            output.write(buff,0,read);
+        }
+
+        output.write(new SatoCommand("<ESC>Z<ETX>").convertToSatoCommand());
+        output.flush();
     }
 
     public static void sendComandoImpresion(OutputStream output, String articulo, String cantidad, String lote, String pedido, String albaran, String linea, String epc, String control, File image) throws IOException {
