@@ -1,8 +1,11 @@
 package com.myruns.impresionagui;
 
 import com.beust.jcommander.JCommander;
+import com.myruns.impresionagui.ui.Layout;
+import com.myruns.impresionagui.ui.UserInterfaceUtils;
 
 
+import javax.jws.soap.SOAPBinding;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -19,7 +22,12 @@ public class Main {
         File logo = null;
 
         Configuration configuration = new Configuration();
-        JCommander jCommander = new JCommander(configuration, args);
+        //JCommander jCommander = new JCommander(configuration, args);
+
+        configuration.db_host = "myruns.com";
+        configuration.db_user = "myrunsco_bidean";
+        configuration.db_password = "NE^De^~P#+Ek";
+        configuration.db_name = "myrunsco_bidean";
 
 
 //        File aguiLogo = new File("agui_logo.bmp");
@@ -27,15 +35,17 @@ public class Main {
 //            System.out.println("Fichero de logo no encontrado:");
 //            System.out.println(aguiLogo.getAbsolutePath());
 //        }
+        UserInterfaceUtils.setSystemLookAndFeel();
         Layout Lay = new Layout();
         Lay.setVisible(true);
-        Lay.setWaiting();
+        Lay.setConectando();
 
         while (true) {
             DatabaseManager databaseManager = new DatabaseManager();
             try {
 
                 databaseManager.connect(configuration);
+                Lay.setWaiting();
                 ArrayList<Articulo> articulosParaImprimir = databaseManager.getArticulosPendientesParaImprimir();
                 if (articulosParaImprimir.size() > 0){
                     System.out.println("Hay " + articulosParaImprimir.size() + " impresiones pendientes");
@@ -84,8 +94,10 @@ public class Main {
 
                 }
             } catch (SQLException e) {
+                Lay.setError();
                 e.printStackTrace();
             } catch (Exception e) {
+                Lay.setError();
                 e.printStackTrace();
             }
         }
