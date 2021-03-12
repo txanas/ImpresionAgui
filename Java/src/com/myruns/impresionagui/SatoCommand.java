@@ -29,11 +29,11 @@ public class SatoCommand {
         return command.getBytes();
     }
 
-    public static void sendComandoImpresion(OutputStream outputStream, Articulo articulo, File imageFile) throws IOException {
-        sendComandoImpresion(outputStream, articulo.articulo, String.valueOf(articulo.cantidad), articulo.lote, String.valueOf(articulo.pedido), articulo.albaran, String.valueOf(articulo.numLinea), articulo.epc, articulo.control, imageFile);
+    public static void sendComandoImpresion(OutputStream outputStream, Articulo articulo, File imageFile, boolean consigna) throws IOException {
+        sendComandoImpresion(outputStream, articulo.articulo, String.valueOf(articulo.cantidad), articulo.lote, String.valueOf(articulo.pedido), articulo.albaran, String.valueOf(articulo.numLinea), articulo.epc, articulo.control, imageFile, consigna);
     }
 
-    public static void sendComandoImpresion(OutputStream output, String articulo, String cantidad, String lote, String pedido, String albaran, String linea, String epc, String control, File image) throws IOException {
+    public static void sendComandoImpresion(OutputStream output, String articulo, String cantidad, String lote, String pedido, String albaran, String linea, String epc, String control, File image, boolean consigna) throws IOException {
         // Inicio del comando
         String comando = "<STX><ESC>A";
 
@@ -74,6 +74,11 @@ public class SatoCommand {
         //Linea
         comando += "<ESC>V120<ESC>H560<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "LINEA ";
         comando += "<ESC>V145<ESC>H580<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + linea;
+
+        // Consigna
+        if (consigna){
+            comando +=  comando += "<ESC>V95<ESC>H650<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "CONSIGNA";
+        }
 
         //Lote, numero y barcode
         comando += "<ESC>V120<ESC>H650<ESC>P4<ESC>L0101<ESC>RDB00,020,020," + "LOTE ";

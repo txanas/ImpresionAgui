@@ -37,7 +37,7 @@ public class Main {
                             Socket socket = new Socket();
                             socket.connect(new InetSocketAddress(articulo.printerIP, 9100), configuration.timeout);
                             OutputStream output = socket.getOutputStream();
-                            SatoCommand.sendComandoImpresion(output, articulo, aguiLogo);
+                            SatoCommand.sendComandoImpresion(output, articulo, aguiLogo, (articulo.estadoSpyro == -1));
                             output.flush();
                             Thread.sleep(300);
                             output.close();

@@ -28,7 +28,7 @@ public class PrintTestMain {
         Socket socket = new Socket("192.168.1.200", 9100);
         OutputStream output = socket.getOutputStream();
 
-        SatoCommand.sendComandoImpresion(output, articulo, aguiLogo);
+        SatoCommand.sendComandoImpresion(output, articulo, aguiLogo, true);
 
         Thread.sleep(300);
         output.close();
